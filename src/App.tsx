@@ -1,6 +1,7 @@
-import Footer from "./Components/Footer";
-import TopNavbar from "./Components/TopNavbar";
+import TopNavbar from "./components/TopNavbar";
 import Routese from "./Routese";
+import Footer from './components/Footer'
+import React from "react";
 
 export default function App() {
   return (

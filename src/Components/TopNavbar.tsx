@@ -1,16 +1,28 @@
-import React, { useState } from "react";
-import {AiOutlineSearch,AiOutlineClose} from "react-icons/ai";
-import {BsArrowLeft,BsHouse} from "react-icons/bs";
-import {  FaBars, FaCookie } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
+import { BsArrowLeft, BsHouse } from "react-icons/bs";
+import { FaBars, FaCookie } from "react-icons/fa";
 import { MdOutlineFavorite } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { PiCoffee } from "react-icons/pi";
+import { useDispatch } from "react-redux";
+import { searchRecipes } from "../redux/mealSlice";
+// import { searchRecipes } from "../redux/Slice";
 
 const TopNavbar: React.FC = () => {
+  const dispatch = useDispatch();
   const [sideNav, setSideNav] = useState<boolean>(false);
+
+ 
 
   const closeSideNav = () => {
     setSideNav(false);
+  };
+
+  /// handle search
+  const handleSearch = (searchQuery: string) => {
+    console.log("handleSearch called with query:", searchQuery);
+    dispatch(searchRecipes(searchQuery) as any);
   };
 
   return (
@@ -21,9 +33,7 @@ const TopNavbar: React.FC = () => {
         <div className="cursor-pointer">
           <PiCoffee size={25} />
         </div>
-        <h1
-          className="hidden sm:block sm:text-3xl px-2"
-          style={{ width: "234px" }}>
+        <h1 className="hidden sm:block sm:text-3xl px-2" style={{ width: "234px" }}>
           Delicias a Meta
         </h1>
       </div>
@@ -48,22 +58,42 @@ const TopNavbar: React.FC = () => {
           className="bg-transparent p-2 w-full focus:outline-none"
           type="text"
           placeholder="Search meals"
+          onChange={(e) => handleSearch(e.target.value)}
         />
       </div>
 
-      <div className="lg:hidden md:hidden ml-2">
+      <div className="lg:hidden md:hidden ml-2 transition-transform transform duration-600">
         {sideNav ? (
           <AiOutlineClose
             size={25}
-            onClick={() => setSideNav(!sideNav)}
+            
+            onClick={() => {
+              setSideNav(!sideNav);
+            }}
+            className={`transition-transform transform-3 duration-3000 ${
+              sideNav ? 'translate-x-0' : 'translate-x-full'
+            }`}
           />
         ) : (
-          <FaBars size={25} onClick={() => setSideNav(!sideNav)} />
+          <FaBars
+            size={25}
+            
+            onClick={() => {
+              setSideNav(!sideNav);
+            }}
+            className={`transition-transform transform-3 duration-3000 ${
+              sideNav ? 'translate-x-full' : 'translate-x-0'
+            }`}
+          />
         )}
       </div>
 
       {sideNav && (
-        <div className={`fixed top-0 right-0 w-[300px] h-screen bg-white z-10 duration-500 ${sideNav ? 'opacity-100' : 'opacity-0'}`}>
+        <div
+          className={`fixed top-0 right-0 w-[300px] h-screen bg-white z-10 transform transition-transform duration-500 ${
+            sideNav ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
           <BsArrowLeft
             onClick={() => setSideNav(!sideNav)}
             size={25}

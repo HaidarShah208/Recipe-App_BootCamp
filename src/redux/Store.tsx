@@ -1,10 +1,12 @@
 // Store.ts
 import { configureStore } from '@reduxjs/toolkit';
 import spoonacularReducer from './Slice'
+import mealSlices from './mealSlice';
 
 const store = configureStore({
   reducer: {
     spoonacular: spoonacularReducer, 
+    meals:mealSlices
   },
 });
 
