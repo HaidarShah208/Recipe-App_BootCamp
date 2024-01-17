@@ -15,17 +15,11 @@ export const fetchMeals = createAsyncThunk('meals/fetchMeals', async () => {
     return response.data.categories;
   } catch (error: any) {
     console.error(error);
-    // if (axios.isAxiosError(error)) {
-    //   return error.response?.data || 'Error occurred';
-    // } else {
-    //   return 'Error occurred';
-    // }
   }
 });
 
 export const searchRecipes = createAsyncThunk('meals/searchRecipes', async (searchQuery: string) => {
   try {
-    console.log('searchRecipes async thunk called with query:', searchQuery);
     const response = await instance.get('categories.php', {
       params: { q: searchQuery },
     });
@@ -34,7 +28,7 @@ export const searchRecipes = createAsyncThunk('meals/searchRecipes', async (sear
     const filteredRecipes = allRecipes.filter(recipe => {
       return recipe.strCategory.toLowerCase().includes(searchQuery.toLowerCase());
     });
-    console.log('filtered recipes', filteredRecipes);
+
     return filteredRecipes;
   } catch (error) {
     throw new Error("Error searching recipes");

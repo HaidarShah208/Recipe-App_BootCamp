@@ -23,7 +23,7 @@ export const fetchRecipe = createAsyncThunk(
           }
         }
       );
-      console.log("API Response:", response.data);
+      // console.log("API Response:", response.data);
       return response.data.d;
     } catch (error) {
       throw new Error("Error fetching recipe data");
