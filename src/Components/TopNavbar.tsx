@@ -6,7 +6,7 @@ import { MdOutlineFavorite } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { PiCoffee } from "react-icons/pi";
 import { useDispatch } from "react-redux";
-import { searchRecipes } from "../redux/mealSlice";
+import { searchRecipes } from "../redux/SearchSlice";
 // import { searchRecipes } from "../redux/Slice";
 
 const TopNavbar: React.FC = () => {

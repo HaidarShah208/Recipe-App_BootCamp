@@ -3,7 +3,9 @@ import LargeCards from '../../components/LargeCards';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/Store';
-import { fetchMeals, searchRecipes } from '../../redux/mealSlice';
+import { fetchMeals,  } from '../../redux/mealSlice';
+import { searchRecipes  } from '../../redux/SearchSlice';
+import Loader from '../../components/Loader';
 
 const Store: React.FC = () => {
   const { searchQuery } = useParams();
@@ -11,7 +13,8 @@ const Store: React.FC = () => {
 
   const dispatch = useDispatch<AppDispatch>();
   const mealArray = useSelector((state: RootState) => state.meals.meals);
-  const searchResults = useSelector((state: RootState) => state.meals.searchResults);
+  const searchResults = useSelector((state: RootState) => state.mealFetch.searchResults);
+  const loading = useSelector((state: RootState) => state.meals.loading);
 
   useEffect(() => {
     const handleResize = () => {
@@ -27,6 +30,9 @@ const Store: React.FC = () => {
     };
   }, [dispatch, searchQuery]);
 
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <div className="container mx-auto flex flex-col text-center justify-center px-3" style={{ maxWidth: windowWidth < 768 ? '380px' : '100%' }}>
       <h1 className="col-span-12 text-2xl my-10 font-bold">

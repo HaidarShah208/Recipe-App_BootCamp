@@ -5,7 +5,9 @@ import { AppDispatch, RootState } from "../../redux/Store";
 import { fetchRecipe } from "../../redux/Slice";
 import Loader from "../../components/Loader";
 import Cards from "../../components/Cards";
-import { fetchMeals, searchRecipes } from "../../redux/mealSlice";
+import { fetchMeals } from "../../redux/mealSlice";
+import { searchRecipes } from "../../redux/SearchSlice";
+
 import { useParams } from "react-router-dom";
 
 const Home: React.FC = () => {
@@ -14,10 +16,9 @@ const Home: React.FC = () => {
   const mealArray = useSelector((state: RootState) => state.meals.meals);
 
   const searchResults = useSelector(
-    (state: RootState) => state.meals.searchResults
-  );
-  const loading = useSelector((state: RootState) => state.spoonacular.loading);
-  const error = useSelector((state: RootState) => state.spoonacular.error);
+    (state: RootState) => state.mealFetch.searchResults);
+  const loading = useSelector((state: RootState) => state.meals.loading);
+  const error = useSelector((state: RootState) => state.meals.error);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isLargeScreen, setIsLargeScreen] = useState<boolean>(
     window.innerWidth >= 768

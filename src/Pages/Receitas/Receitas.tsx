@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchRecipe, searchRecipes } from '../../redux/Slice'; // Correct the import path
 import { RootState, AppDispatch } from '../../redux/Store';
 import { useParams } from 'react-router-dom';
-import { ReactNode } from 'react';
 import Loader from '../../components/Loader';
 import { fetchMeals } from '../../redux/mealSlice';
 
@@ -12,12 +11,11 @@ const Receitas: React.FC = () => {
   const {recpieId}=useParams()
   console.log('recpieId', recpieId)
   const dispatch = useDispatch<AppDispatch>();
-  const recipesArray = useSelector((state: RootState) => state.spoonacular.recipe);
   const mealArray = useSelector((state: RootState) => state.meals.meals);
 
-  const searchResults = useSelector((state: RootState) => state.spoonacular.searchResults);
- const loading = useSelector((state: RootState) => state.spoonacular.loading);
-  const error = useSelector((state: RootState) => state.spoonacular.error);
+  const searchResults = useSelector((state: RootState) => state.mealFetch.searchResults);
+ const loading = useSelector((state: RootState) => state.meals.loading);
+  const error = useSelector((state: RootState) => state.meals.error);
   const [recipieData,setRecipieData]= useState<any>(null);
 
   useEffect(() => {

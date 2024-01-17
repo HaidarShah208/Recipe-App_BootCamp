@@ -4,7 +4,9 @@ import { fetchRecipe } from "../../redux/Slice";
 import { RootState, AppDispatch } from "../../redux/Store";
 import { useParams } from "react-router-dom";
 import Cards from "../../components/Cards";
-import { fetchMeals, searchRecipes } from "../../redux/mealSlice";
+import { fetchMeals } from "../../redux/mealSlice";
+import { searchRecipes } from "../../redux/SearchSlice";
+import Loader from "../../components/Loader";
 
 const AllReceitas: React.FC = () => {
   const { recpieId } = useParams();
@@ -16,9 +18,9 @@ const AllReceitas: React.FC = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const searchResults = useSelector(
-    (state: RootState) => state.meals.searchResults
+    (state: RootState) => state.mealFetch.searchResults
   );
-  const loading = useSelector((state: RootState) => state.spoonacular.loading);
+  const loading = useSelector((state: RootState) => state.meals.loading);
 
   useEffect(() => {
     dispatch(fetchMeals());
@@ -34,6 +36,10 @@ const AllReceitas: React.FC = () => {
     };
   }, [dispatch,searchQuery]);
 
+
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <div className="container mx-auto flex flex-col justify-center items-center py-16 text-center px-8" >
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
