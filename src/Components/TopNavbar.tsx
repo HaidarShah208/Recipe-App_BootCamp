@@ -79,8 +79,7 @@ const TopNavbar: React.FC = () => {
             size={25}
             
             onClick={() => {
-              setSideNav(!sideNav);
-            }}
+              setSideNav(!sideNav);}}
             className={`transition-transform transform-3 duration-3000 ${
               sideNav ? 'translate-x-full' : 'translate-x-0'
             }`}

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRecipe } from "../../redux/Slice";
 import { RootState, AppDispatch } from "../../redux/Store";
@@ -10,9 +10,11 @@ const AllReceitas: React.FC = () => {
   const { recpieId } = useParams();
   const { searchQuery } = useParams();
 
-  console.log("recpieId", recpieId);
+  // console.log("recpieId", recpieId);
   const dispatch = useDispatch<AppDispatch>();
   const mealArray = useSelector((state: RootState) => state.meals.meals);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
   const searchResults = useSelector(
     (state: RootState) => state.meals.searchResults
   );
@@ -23,10 +25,17 @@ const AllReceitas: React.FC = () => {
     if (searchQuery) {
       dispatch(searchRecipes(searchQuery));
     }
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, [dispatch,searchQuery]);
 
   return (
-    <div className="container mx-auto flex flex-col justify-center items-center py-16 text-center ">
+    <div className="container mx-auto flex flex-col justify-center items-center py-16 text-center px-8" >
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
         <h1 className="col-span-12 text-2xl mb-14 font-bold">
           {searchResults.length > 0 ? 'Search Results' : 'Receitas mais procuradas'}
@@ -34,7 +43,7 @@ const AllReceitas: React.FC = () => {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
       {searchResults.length > 0 ? (
-          searchResults.slice(0, 3).map((item) => (
+          searchResults.map((item) => (
             <Cards
               key={item.idCategory}
               image={item.strCategoryThumb}
@@ -45,7 +54,6 @@ const AllReceitas: React.FC = () => {
           ))
         ) : (
           mealArray
-            .slice(0, 3)
             .map((item) => (
               <Cards
                 key={item.idCategory}

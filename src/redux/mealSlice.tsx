@@ -1,38 +1,34 @@
 // mealSlice.tsx
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
+import instance from '../helper/instance/Instance';
 
 interface MealState {
   meals: any[];
   loading: boolean;
   error: string | null;
-  searchResults:any  [],
+  searchResults: any[];
 }
 
 export const fetchMeals = createAsyncThunk('meals/fetchMeals', async () => {
   try {
-    const response = await axios.get('https://www.themealdb.com/api/json/v1/1/categories.php');
-    console.log('data', response.data.categories
-    );
+    const response = await instance.get('categories.php');
     return response.data.categories;
   } catch (error: any) {
     console.error(error);
-    if (axios.isAxiosError(error)) {
-      return error.response?.data || 'Error occurred';
-    } else {
-      return 'Error occurred';
-    }
+    // if (axios.isAxiosError(error)) {
+    //   return error.response?.data || 'Error occurred';
+    // } else {
+    //   return 'Error occurred';
+    // }
   }
 });
+
 export const searchRecipes = createAsyncThunk('meals/searchRecipes', async (searchQuery: string) => {
   try {
     console.log('searchRecipes async thunk called with query:', searchQuery);
-    const response = await axios.get(
-      `https://www.themealdb.com/api/json/v1/1/categories.php`,
-      {
-        params: { q: searchQuery },
-      }
-    );
+    const response = await instance.get('categories.php', {
+      params: { q: searchQuery },
+    });
 
     const allRecipes = response.data.categories as any[];
     const filteredRecipes = allRecipes.filter(recipe => {
@@ -45,7 +41,6 @@ export const searchRecipes = createAsyncThunk('meals/searchRecipes', async (sear
   }
 });
 
-// console.log('yahoo', searchRecipes)
 const initialState: MealState = {
   meals: [],
   loading: false,
@@ -73,21 +68,21 @@ export const mealSlice = createSlice({
         state.error = action.payload;
       });
 
-      //search meals
-      builder
-  .addCase(searchRecipes.pending, (state) => {
-    state.loading = true;
-    state.error = null;
-  })
-  .addCase(searchRecipes.fulfilled, (state, action: PayloadAction<any>) => {
-    state.loading = false;
-    const recipes: any[] = action.payload || [];
-    state.searchResults = recipes;
-  })
-  .addCase(searchRecipes.rejected, (state, action: PayloadAction<any>) => {
-    state.loading = false;
-    state.error = action.payload;
-  });
+    // Search meals
+    builder
+      .addCase(searchRecipes.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(searchRecipes.fulfilled, (state, action: PayloadAction<any>) => {
+        state.loading = false;
+        const recipes: any[] = action.payload || [];
+        state.searchResults = recipes;
+      })
+      .addCase(searchRecipes.rejected, (state, action: PayloadAction<any>) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
   },
 });
 

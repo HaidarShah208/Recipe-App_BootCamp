@@ -20,15 +20,15 @@ const LargeCards: React.FC<RecipieCardProps> = ({
   };
   return (
     <>
-      <div className="bg-white-200 lg:flex justify-center lg:h-[240px] shadow my-3 md:mx-auto">
+      <div className="bg-white-200 lg:max-w-[1187px] lg:flex justify-center lg:h-[322px] shadow my-3 md:mx-auto border-2 rounded-xl ">
         <div
-          className=" lg:h-auto lg:w-[300px] h-[212px] sm:w-full md:w-[full] md:h-[250px] sm:h-[370px] bg-cover flex-none bg-center rounded-t lg:rounded-l"
+          className=" lg:h-auto lg:w-[403px] h-[322px] sm:w-full md:w-[full] md:h-[250px] sm:h-[370px] bg-cover flex-none bg-center rounded-t lg:rounded-l"
           style={{ backgroundImage: `url(${image})` }}
           title="Woman holding a mug"
         ></div>
-        <div className="lg:px-16 lg:max-w-[1147px]  sm:w-full border-b border-x border-1 border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded lg:py-4 flex flex-col justify-between leading-normal">
+        <div className="lg:px-16 sm:w-full  border-gray-400 lg:border-l-0  bg-white rounded lg:py-4 flex flex-col leading-normal">
           <h4
-            className="text-gray-900 font-bold text-xl mb-2  text-start"
+            className="text-gray-900 font-bold text-xl pt-10 text-start"
             style={{ margin: "10px" }}
           >
             {titile} ...
@@ -41,7 +41,7 @@ const LargeCards: React.FC<RecipieCardProps> = ({
           </p>
 
           <button
-            className="md:mt-1 mb-4 bg-yellow-300 text-white px-4 py-2 rounded-md hover:bg-yellow-600 focus:outline-none focus:ring focus:border-yellow-300 ms-0 max-w-[150px]"
+            className="md:mt-3  mb-4 bg-yellow-300 px-4 py-2 rounded-md hover:bg-yellow-600 focus:outline-none focus:ring focus:border-yellow-300 ms-0 max-w-[150px]"
             onClick={handleClick}
             style={{ margin: "10px" }}
           >

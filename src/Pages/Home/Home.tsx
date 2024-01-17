@@ -38,7 +38,7 @@ const Home: React.FC = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [dispatch, searchQuery]);
-  console.log("Search Results:", searchResults);
+  // console.log("Search Results:", searchResults);
 
   const sliceInstructions = (instructions: string): string => {
     if (windowWidth >= 1024) {
@@ -76,13 +76,13 @@ const Home: React.FC = () => {
         </h2>
       </div>
 
-      <div className="container mx-auto flex flex-col justify-center items-center py-16 text-center ">
+      <div className="container mx-auto flex flex-col justify-center  py-16 text-center">
       <h1 className="col-span-12 text-2xl mb-14 font-bold">
         {searchResults.length > 0
           ? "Search Results"
           : "Receitas mais procuradas"}
       </h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 px-8 ">
         {searchResults.length > 0 ? (
           searchResults.slice(0, 3).map((item) => (
             <Cards
@@ -108,11 +108,11 @@ const Home: React.FC = () => {
         )}
       </div>
     </div>
-      <div className="container mx-auto flex flex-col text-center justify-center px-3 ">
+      <div className="container mx-auto flex flex-col text-center justify-center px-3 gap-1" style={{ maxWidth: windowWidth < 768 ? '380px' : '100%' }}>
         <h1 className="col-span-12 text-2xl font-bold pb-16">
           Receitas recentes
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8 sm:mx-5  md:rounded-none lg:rounded-3xl ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8 sm:mx-2 rounded-s-2xl">
           {mealArray.slice(10, 13).map((item) => (
             <LargeCards
               key={item.idCategory}
