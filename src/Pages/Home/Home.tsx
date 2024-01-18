@@ -5,7 +5,7 @@ import { AppDispatch, RootState } from "../../redux/Store";
 import { fetchRecipe } from "../../redux/Slice";
 import Loader from "../../components/Loader";
 import Cards from "../../components/Cards";
-import { fetchMeals } from "../../redux/mealSlice";
+import { Category, fetchMeals } from "../../redux/MealSlice";
 import { searchRecipes } from "../../redux/SearchSlice";
 
 import { useParams } from "react-router-dom";
@@ -13,10 +13,13 @@ import { useParams } from "react-router-dom";
 const Home: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { searchQuery } = useParams();
-  const mealArray = useSelector((state: RootState) => state.meals.meals);
+  const mealArray: Category[] = useSelector(
+    (state: RootState) => state.meals.meals
+  );
 
   const searchResults = useSelector(
-    (state: RootState) => state.mealFetch.searchResults);
+    (state: RootState) => state.mealFetch.searchResults
+  );
   const loading = useSelector((state: RootState) => state.meals.loading);
   const error = useSelector((state: RootState) => state.meals.error);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -39,7 +42,6 @@ const Home: React.FC = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [dispatch, searchQuery]);
-  // console.log("Search Results:", searchResults);
 
   const sliceInstructions = (instructions: string): string => {
     if (windowWidth >= 1024) {
@@ -55,7 +57,7 @@ const Home: React.FC = () => {
     return <Loader />;
   }
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div>Error: {error.message}</div>; // Assuming error is an object with a message property
   }
   if (fetchMeals == null) {
     return <div>Loading...</div>;
@@ -71,58 +73,46 @@ const Home: React.FC = () => {
             "url('https://img.freepik.com/premium-vector/chicken-dish-top-view-with-wooden-pattern-background-chicken-meat-collection-chicken-food-template_761765-41.jpg')",
         }}
       >
-        <h2 className="absolute inset-0 text-white flex items-center justify-center text-center text-yellow font-bold md:text-3xl sm:text-sm " style={{backgroundColor:'rgba(0, 0, 0, 0.6)'}}>
+        <h2
+          className="absolute inset-0 text-white flex items-center justify-center text-center text-yellow font-bold md:text-3xl sm:text-sm "
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}
+        >
           Get Inspired, Cook with passion and enjoy <br /> unforgettable moments
           at the table
         </h2>
       </div>
 
       <div className="container mx-auto flex flex-col justify-center  py-16 text-center">
-      <h1 className="col-span-12 text-2xl mb-14 font-bold">
-        {searchResults.length > 0
-          ? "Search Results"
-          : "Receitas mais procuradas"}
-      </h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 px-8 ">
-        {searchResults.length > 0 ? (
-          searchResults.slice(0, 3).map((item) => (
+        <h1 className="col-span-12 text-2xl mb-14 font-bold">
+          Receitas mais procuradas
+        </h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 px-8 ">
+          {mealArray.slice(0, 3).map((item) => (
             <Cards
-              key={item.idCategory}
-              image={item.strCategoryThumb}
-              titile={item.strCategory.slice(0, 24)}
-              instriuctions={item.strCategoryDescription.slice(0, 100)}
-              recpieId={item.idCategory}
+              key={item.idMeal}
+              image={item.strMealThumb}
+              titile={item.strMeal.slice(0, 24)}
+              instriuctions={item.strInstructions.slice(0, 100)}
+              recpieId={item.idMeal}
             />
-          ))
-        ) : (
-          mealArray
-            .slice(0, 3)
-            .map((item) => (
-              <Cards
-                key={item.idCategory}
-                image={item.strCategoryThumb}
-                titile={item.strCategory.slice(0, 24)}
-                instriuctions={item.strCategoryDescription.slice(0, 100)}
-                recpieId={item.idCategory}
-              />
-            ))
-        )}
+          ))}
+        </div>
       </div>
-    </div>
-      <div className="container mx-auto flex flex-col text-center justify-center px-3 gap-1" style={{ maxWidth: windowWidth < 768 ? '380px' : '100%' }}>
+      <div
+        className="container mx-auto flex flex-col text-center justify-center px-3 gap-1"
+        style={{ maxWidth: windowWidth < 768 ? "380px" : "100%" }}
+      >
         <h1 className="col-span-12 text-2xl font-bold pb-16">
           Receitas recentes
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8 sm:mx-2 rounded-s-2xl">
           {mealArray.slice(10, 13).map((item) => (
             <LargeCards
-              key={item.idCategory}
-              recpieId={item.idCategory} // Ensure unique keys for each card
-              image={item.strCategoryThumb} // Assuming image is a property of each item
-              titile={
-                isLargeScreen ? item.strCategory.slice(0, 27) : item.strCategory
-              }
-              instriuctions={sliceInstructions(item.strCategoryDescription)}
+              key={item.idMeal}
+              recpieId={item.idMeal}
+              image={item.strMealThumb}
+              titile={isLargeScreen ? item.strMeal.slice(0, 27) : item.strMeal}
+              instriuctions={sliceInstructions(item.strInstructions)}
             />
           ))}
         </div>

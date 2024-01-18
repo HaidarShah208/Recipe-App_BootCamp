@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 import { BsArrowLeft, BsHouse } from "react-icons/bs";
 import { FaBars, FaCookie } from "react-icons/fa";
 import { MdOutlineFavorite } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PiCoffee } from "react-icons/pi";
 import { useDispatch } from "react-redux";
 import { searchRecipes } from "../redux/SearchSlice";
-// import { searchRecipes } from "../redux/Slice";
 
 const TopNavbar: React.FC = () => {
   const dispatch = useDispatch();
   const [sideNav, setSideNav] = useState<boolean>(false);
-
+const navigate=useNavigate()
  
 
   const closeSideNav = () => {
@@ -21,7 +20,7 @@ const TopNavbar: React.FC = () => {
 
   /// handle search
   const handleSearch = (searchQuery: string) => {
-    console.log("handleSearch called with query:", searchQuery);
+    navigate("/recite")
     dispatch(searchRecipes(searchQuery) as any);
   };
 
@@ -39,21 +38,21 @@ const TopNavbar: React.FC = () => {
       </div>
 
       <div className="hidden sm:flex items-center px-2 Hug-[406px] sm:w-[400px] lg:w-[500px] md:w-[170px] justify-center">
-        <ul className="flex items-center">
-          <li className="w-[75px] font-medium">
+        <ul className="flex items-center justify-center">
+          <li className="lg:w-[111px] sm:w-[60px] font-medium h-[31px] "  >
             <Link to="/">Home</Link>
           </li>
-          <li className="w-[75px] font-medium">
+          <li className="lg:w-[111px] sm:w-[60px] h-[31px] font-medium">
             <Link to="/recite">Recite</Link>
           </li>
-          <li className="w-[75px] font-medium">
+          <li className="lg:w-[111px] sm:w-[60px] font-medium h-[31px]">
             <Link to="/store">Store</Link>
           </li>
         </ul>
       </div>
 
       <div className="hidden sm:flex items-center bg-gray-200 rounded-full max-w-[400px] sm:w-[400px] lg:w-[258px] md:w-[170px]">
-        <AiOutlineSearch size={20} className="ms-2" />
+       <AiOutlineSearch size={20} className="ms-2" />
         <input
           className="bg-transparent p-2 w-full focus:outline-none"
           type="text"

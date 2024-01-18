@@ -1,7 +1,6 @@
 // Store.ts
 import { configureStore } from '@reduxjs/toolkit';
-import spoonacularReducer from './Slice'
-import mealSlices from './mealSlice';
+import mealSlices from './MealSlice';
 import mealFetchSlice from './SearchSlice';
 
 const store = configureStore({

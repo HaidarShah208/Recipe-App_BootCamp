@@ -1,5 +1,5 @@
 import TopNavbar from "./components/TopNavbar";
-import Routese from "./Routese";
+import Routese from "./pages/Routese";
 import Footer from './components/Footer'
 import React from "react";
 

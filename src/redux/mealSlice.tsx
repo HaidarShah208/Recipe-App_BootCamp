@@ -1,19 +1,34 @@
-// mealFetchSlice.ts
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import instance from '../helper/instance/Instance';
 
+
+export interface Category {
+  strCategory: string;
+  strCategoryDescription:string;
+  strCategoryThumb: string;
+  strMeal: string;
+  strMealThumb: string;
+  strInstructions: string;
+  idMeal:number
+}
+
+interface MyError {
+  message: string
+  
+}
 interface MealFetchState {
-  meals: any[];
+  meals: Category[];
   loading: boolean;
-  error: string | null;
+  error: MyError | null;
 }
 
 export const fetchMeals = createAsyncThunk('meals/fetchMeals', async () => {
   try {
-    const response = await instance.get('categories.php');
-    return response.data.categories;
-  } catch (error: any) {
+    const response = await instance.get('search.php?s');
+    return response.data.meals;
+  } catch (error) {
     console.error(error);
+    throw error;
   }
 });
 
@@ -33,14 +48,18 @@ export const mealFetchSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchMeals.fulfilled, (state, action: PayloadAction<any>) => {
+      .addCase(fetchMeals.fulfilled, (state, action: PayloadAction<{ meals: Category[]}>) => {
         state.loading = false;
         const meals = action.payload?.meals || action.payload || [];
         state.meals = Array.isArray(meals) ? meals : [meals];
       })
-      .addCase(fetchMeals.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(fetchMeals.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        if (action.payload) {
+          state.error = action.payload as MyError;
+        } else {
+          state.error = { message: 'Unknown error occurred' };
+        }
       });
   },
 });
