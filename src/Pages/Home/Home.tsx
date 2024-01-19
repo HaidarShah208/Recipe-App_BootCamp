@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import LargeCards from "../../components/LargeCards";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/Store";
-import { fetchRecipe } from "../../redux/Slice";
 import Loader from "../../components/Loader";
 import Cards from "../../components/Cards";
 import { Category, fetchMeals } from "../../redux/MealSlice";
@@ -28,7 +27,6 @@ const Home: React.FC = () => {
   );
 
   useEffect(() => {
-    dispatch(fetchRecipe());
     dispatch(fetchMeals());
     if (searchQuery) {
       dispatch(searchRecipes(searchQuery));

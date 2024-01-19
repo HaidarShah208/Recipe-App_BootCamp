@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchRecipe, searchRecipes } from "../../redux/Slice";  
 import { RootState, AppDispatch } from "../../redux/Store";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
@@ -32,13 +31,6 @@ const Receitas: React.FC = () => {
     listStyleType: 'disc', 
   };
 
-  useEffect(() => {
-    dispatch(fetchRecipe());
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(searchRecipes("chicken soup"));
-  }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchMeals());

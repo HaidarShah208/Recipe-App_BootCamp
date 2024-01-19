@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchRecipe } from "../../redux/Slice";
 import { RootState, AppDispatch } from "../../redux/Store";
 import { useParams } from "react-router-dom";
 import Cards from "../../components/Cards";

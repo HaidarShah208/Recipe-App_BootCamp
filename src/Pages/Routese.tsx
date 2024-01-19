@@ -5,11 +5,15 @@ import Store from "./sotore/Stores";
 import Receitas from "./receitas/Receitas";
 import AllReceitas from "./allReceitas/AllReceitas";
 import PageNotFound from "../components/PageNotFound";
+import TopNavbar from "../components/TopNavbar";
+import Footer from "../components/Footer";
 
 
 
 const Routese: React.FC = () => {
   return (
+    <>
+ <TopNavbar/>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/store" element={<Store />} />
@@ -17,6 +21,9 @@ const Routese: React.FC = () => {
       <Route path="/recite" element={<AllReceitas />} />
       <Route path="*" element={<PageNotFound/>} />
     </Routes>
+    <Footer/>
+    </>
+
   );
 };
 
