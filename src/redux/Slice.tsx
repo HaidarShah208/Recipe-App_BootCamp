@@ -33,7 +33,6 @@ export const fetchRecipe = createAsyncThunk(
 // search recipes
 export const searchRecipes = createAsyncThunk('spoonacular/searchRecipes', async (searchQuery: string) => {
   try {
-    console.log('searchRecipes async thunk called with query:', searchQuery);
       const response = await axios.get(
         `https://food-recipes-with-images.p.rapidapi.com/`,
         {

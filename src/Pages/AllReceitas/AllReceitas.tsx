@@ -63,27 +63,27 @@ const AllReceitas: React.FC = () => {
         </div>
       </div>
 
-      <h1 className=" text-left justify-start ps-0 text-2xl mt-14 mb-8 font-bold">
-        {searchResults.length > 0
-          ? "Search Results"
-          : "Receitas mais procuradas"}
+      <h1 className=" text-left justify-start ps-0 text-2xl mt-[180px] mb-8 font-bold">
+        Search Results
       </h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
-        {searchResults.length > 0 ? (
-          searchResults.map((item) => (
-            <Cards
-              key={item.idMeal}
-              image={item.strMealThumb}
-              titile={item.strMeal.slice(0, 24)}
-              instriuctions={item.strInstructions.slice(0, 100)}
-              recpieId={item.idMeal}
-            />
-          ))
-        ) : (
-          <div className="flex flex-center text-center"> record NOt Found</div>
-        )}
-      </div>
+   <div className="grid grid-cols-1 text-center justify-center sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  {searchResults.length > 0 ? (
+    searchResults.map((item) => (
+      <Cards
+        key={item.idMeal}
+        image={item.strMealThumb}
+        titile={item.strMeal.slice(0, 24)}
+        instriuctions={item.strInstructions.slice(0, 100)}
+        recpieId={item.idMeal}
+      />
+    ))
+  ) : (
+    <div className="col-span-3 py-16 text-3xl text-center">
+      Not Found &#x1F611;
+    </div>
+  )}
+</div>
     </div>
   );
 };

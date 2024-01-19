@@ -70,11 +70,11 @@ const Home: React.FC = () => {
         style={{
           lineHeight: "48px",
           backgroundImage:
-            "url('https://img.freepik.com/premium-vector/chicken-dish-top-view-with-wooden-pattern-background-chicken-meat-collection-chicken-food-template_761765-41.jpg')",
+            "url('https://png.pngtree.com/background/20230512/original/pngtree-an-attractive-image-of-many-plates-of-food-picture-image_2503406.jpg')",
         }}
       >
         <h2
-          className="absolute inset-0 text-white flex items-center justify-center text-center text-yellow font-bold md:text-3xl sm:text-sm "
+          className="absolute inset-0 text-white flex items-center justify-center text-center text-yellow font-bold md:text-3xl  "
           style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}
         >
           Get Inspired, Cook with passion and enjoy <br /> unforgettable moments

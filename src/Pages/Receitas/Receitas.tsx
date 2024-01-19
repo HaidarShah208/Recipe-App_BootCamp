@@ -8,7 +8,6 @@ import { fetchMeals } from "../../redux/MealSlice";
 
 const Receitas: React.FC = () => {
   const { recpieId } = useParams();
-  console.log("recpieId", recpieId);
   const dispatch = useDispatch<AppDispatch>();
   const mealArray = useSelector((state: RootState) => state.meals.meals);
 
@@ -92,7 +91,7 @@ const Receitas: React.FC = () => {
             <h3 className="flex flex-start pb-2 text-2xl font-medium">
               Procedure
             </h3>
-            <p className="py-1">{recipieData.strInstructions}</p>
+            <p className="py-1 ms-4">{recipieData.strInstructions}</p>
           </div>
         </div>
       </div>
