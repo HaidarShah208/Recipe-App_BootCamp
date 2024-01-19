@@ -57,9 +57,7 @@ export const mealFetchSlice = createSlice({
         state.loading = false;
         if (action.payload) {
           state.error = action.payload as MyError;
-        } else {
-          state.error = { message: 'Unknown error occurred' };
-        }
+        } 
       });
   },
 });

@@ -1,8 +1,10 @@
 import React from "react";
 import Routese from "./pages/Routese";
 
-export default function App() {
+const App: React.FC = () => {
   return (
- <Routese/>
-  )
+    <Routese />
+  );
 }
+
+export default App;
