@@ -43,7 +43,7 @@ const AllReceitas: React.FC = () => {
 
   const handleSearch = (searchQuery: string) => {
     console.log("handleSearch called with query:", searchQuery);
-    dispatch(searchRecipes(searchQuery) as any);
+    dispatch(searchRecipes(searchQuery));
   };
 
   return (
@@ -78,11 +78,17 @@ const AllReceitas: React.FC = () => {
         recpieId={item.idMeal}
       />
     ))
-  ) : (
-    <div className="col-span-3 py-16 text-3xl text-center">
-      Not Found &#x1F611;
-    </div>
-  )}
+  ) :
+    mealArray.slice(0, 3).map((item) => (
+      <Cards
+        key={item.idMeal}
+        image={item.strMealThumb}
+        titile={item.strMeal.slice(0, 24)}
+        instriuctions={item.strInstructions.slice(0, 100)}
+        recpieId={item.idMeal}
+      />
+    ))
+  }
 </div>
     </div>
   );

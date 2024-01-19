@@ -1,10 +1,21 @@
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRecipe, searchRecipes } from "../../redux/Slice";  
 import { RootState, AppDispatch } from "../../redux/Store";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
 import { fetchMeals } from "../../redux/MealSlice";
+
+type Recipe = {
+  idMeal: number;
+  strMealThumb: string;
+  strMeal: string;
+  strInstructions: string;
+};
+
+type Category = {
+  idMeal: number;
+};
 
 const Receitas: React.FC = () => {
   const { recpieId } = useParams();
@@ -16,28 +27,31 @@ const Receitas: React.FC = () => {
   );
   const loading = useSelector((state: RootState) => state.meals.loading);
   const error = useSelector((state: RootState) => state.meals.error);
-  const [recipieData, setRecipieData] = useState<any>(null);
+  const [recipieData, setRecipieData] = useState<Recipe | null>(null);
   const listStyle: React.CSSProperties = {
     listStyleType: 'disc', 
   };
+
   useEffect(() => {
     dispatch(fetchRecipe());
   }, [dispatch]);
+
   useEffect(() => {
     dispatch(searchRecipes("chicken soup"));
   }, [dispatch]);
+
   useEffect(() => {
     dispatch(fetchMeals());
   }, [dispatch]);
 
   useEffect(() => {
     const matchRecipieId = mealArray.find(
-      (recipies) => recipies.idMeal.toString() === recpieId
+      (recipies: Category) => recipies.idMeal.toString() === recpieId
     );
     if (matchRecipieId) {
-      setRecipieData(matchRecipieId);
+      setRecipieData(matchRecipieId as Recipe);
     }
-  }, [searchResults, recpieId]);
+  }, [mealArray, recpieId]);
 
   if (loading) {
     return <Loader />;
@@ -46,6 +60,7 @@ const Receitas: React.FC = () => {
   if (error) {
     return <div>Error: {error.message}</div>;  
   }
+
   if (recipieData === null) {
     return <div>Loading...</div>;
   }
@@ -53,7 +68,7 @@ const Receitas: React.FC = () => {
   return (
     <div>
       <div
-        className="main relative bg-cover  bg-center h-[362px] w-full bg-no-repeat"
+        className="main relative bg-cover bg-center h-[362px] w-full bg-no-repeat"
         style={{
           lineHeight: "48px",
           backgroundImage: `url(${recipieData.strMealThumb})`,
@@ -67,7 +82,7 @@ const Receitas: React.FC = () => {
       </div>
 
       <div className="container mx-auto mt-8 ps-10">
-        <div key={recipieData.id}>
+        <div key={recipieData.idMeal}>
           <div className="ingredients">
             <p className="flex flex-start text-2xl pb-2 font-medium">
               Ingredients
@@ -75,13 +90,14 @@ const Receitas: React.FC = () => {
             <ul className="my-5">
               <ul style={listStyle}>
                 {Array.from({ length: 20 }, (_, i) => i + 1).map((index) => {
-                  const ingredient = recipieData[`strIngredient${index}`];
+                  const ingredient = recipieData[`strIngredient${index}` as keyof Recipe] as string;
                   if (ingredient) {
                     return (
                       <div key={index} className="py-1">
                         <li className="ms-10"> {ingredient}</li>
                       </div>
-                    )}
+                    );
+                  }
                   return null;
                 })}
               </ul>

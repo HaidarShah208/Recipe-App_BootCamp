@@ -1,18 +1,16 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
-import { BsArrowLeft, BsHouse } from "react-icons/bs";
-import { FaBars, FaCookie } from "react-icons/fa";
-import { MdOutlineFavorite } from "react-icons/md";
+import { BsArrowLeft } from "react-icons/bs";
+import { FaBars } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { PiCoffee } from "react-icons/pi";
 import { useDispatch } from "react-redux";
 import { searchRecipes } from "../redux/SearchSlice";
+import coffee from "../assests/Ico.png";
 
 const TopNavbar: React.FC = () => {
   const dispatch = useDispatch();
   const [sideNav, setSideNav] = useState<boolean>(false);
-const navigate=useNavigate()
- 
+  const navigate = useNavigate();
 
   const closeSideNav = () => {
     setSideNav(false);
@@ -20,7 +18,7 @@ const navigate=useNavigate()
 
   /// handle search
   const handleSearch = (searchQuery: string) => {
-    navigate("/recite")
+    navigate("/recite");
     dispatch(searchRecipes(searchQuery) as any);
   };
 
@@ -28,18 +26,22 @@ const navigate=useNavigate()
     <div className="max-w-[1286px] lg:mx-auto flex justify-between items-center p-4">
       <div
         className="flex items-center justify-start"
-        style={{ height: "31px" }}>
+        style={{ height: "31px" }}
+      >
         <div className="cursor-pointer">
-          <PiCoffee size={25} />
+          <img src={coffee} alt="cofee-Icon" />
         </div>
-        <h1 className="hidden sm:block sm:text-3xl px-2" style={{ width: "234px" }}>
+        <h1
+          className="hidden sm:block sm:text-3xl px-2"
+          style={{ width: "234px" }}
+        >
           Delicias a Meta
         </h1>
       </div>
 
       <div className="hidden sm:flex items-center px-2 Hug-[406px] sm:w-[400px] lg:w-[500px] md:w-[170px] justify-center">
         <ul className="flex items-center justify-center">
-          <li className="lg:w-[111px] sm:w-[60px] font-medium h-[31px] "  >
+          <li className="lg:w-[111px] sm:w-[60px] font-medium h-[31px] ">
             <Link to="/">Home</Link>
           </li>
           <li className="lg:w-[111px] sm:w-[60px] h-[31px] font-medium">
@@ -52,7 +54,7 @@ const navigate=useNavigate()
       </div>
 
       <div className="hidden sm:flex items-center bg-gray-200 rounded-full max-w-[400px] sm:w-[400px] lg:w-[258px] md:w-[170px]">
-       <AiOutlineSearch size={20} className="ms-2" />
+        <AiOutlineSearch size={20} className="ms-2" />
         <input
           className="bg-transparent p-2 w-full focus:outline-none"
           type="text"
@@ -65,22 +67,21 @@ const navigate=useNavigate()
         {sideNav ? (
           <AiOutlineClose
             size={25}
-            
             onClick={() => {
               setSideNav(!sideNav);
             }}
             className={`transition-transform transform-3 duration-3000 ${
-              sideNav ? 'translate-x-0' : 'translate-x-full'
+              sideNav ? "translate-x-0" : "translate-x-full"
             }`}
           />
         ) : (
           <FaBars
             size={25}
-            
             onClick={() => {
-              setSideNav(!sideNav);}}
+              setSideNav(!sideNav);
+            }}
             className={`transition-transform transform-3 duration-3000 ${
-              sideNav ? 'translate-x-full' : 'translate-x-0'
+              sideNav ? "translate-x-full" : "translate-x-0"
             }`}
           />
         )}
@@ -101,26 +102,23 @@ const navigate=useNavigate()
             Delicias a <span className="text-orange-700 font-bold"> Meta</span>
           </h2>
           <nav>
-            <ul className="flex flex-col p-4 text-gray-900">
-              <li className="text-xl py-4 flex" onClick={closeSideNav}>
-                <BsHouse
-                  size={25}
-                  className="mr-4 text-white bg-black rounded-full"
-                />
+            <ul className="flex flex-col p-4  text-gray-900">
+              <li
+                className="text-xl py-2 ps-3 mb-2 flex bg-yellow-200 "
+                onClick={closeSideNav}
+              >
                 <Link to="/">Home</Link>
               </li>
-              <li className="text-xl py-4 flex" onClick={closeSideNav}>
-                <FaCookie
-                  size={25}
-                  className="mr-4 text-white bg-black rounded-full"
-                />
+              <li
+                className="text-xl py-2 ps-3 mb-2 flex  bg-yellow-200"
+                onClick={closeSideNav}
+              >
                 <Link to="/recite">Recite</Link>
               </li>
-              <li className="text-xl py-4 flex" onClick={closeSideNav}>
-                <MdOutlineFavorite
-                  size={25}
-                  className="mr-4 text-white bg-black rounded-full"
-                />
+              <li
+                className="text-xl py-2 ps-3 mb-2 flex  bg-yellow-200"
+                onClick={closeSideNav}
+              >
                 <Link to="/store">Store</Link>
               </li>
             </ul>

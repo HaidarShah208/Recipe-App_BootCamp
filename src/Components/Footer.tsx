@@ -1,9 +1,9 @@
 import React from 'react';
-import { PiCoffee } from 'react-icons/pi';
 import youtube from '../assests/Youtube Icon.png'
 import pin from '../assests/Pinterest Icon.png'
 import borw from '../assests/Browser Icon.png'
 import twi from '../assests/Twitter Icon.png'
+import coffee from '../assests/Ico.png'
 
 const Footer: React.FC = () => {
   return (
@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
       <div className="container mx-auto flex flex-col justify-around p-4 text-center md:p-10 lg:flex-row">
         <div className="flex lg:flex my-auto justify-center lg:text-left">
           <p className="">
-          <PiCoffee size={35} />
+          <img src={coffee} className='mt-2' alt="cofee-Icon" />
           </p>
           <h1 className="my-1 sm:block hidden ps-3 text-3xl font-medium leading-tight title-font">
           Delicias a Meta
