@@ -25,7 +25,7 @@ const LargeCards: React.FC<RecipieCardProps> = ({
           className=" lg:h-auto lg:w-[403px] h-[322px] sm:w-full md:w-[full] md:h-[250px] sm:h-[370px] bg-cover flex-none bg-center rounded-t lg:rounded-l"
           style={{ backgroundImage: `url(${image})` }}
           title="Woman holding a mug"></div>
-        <div className="lg:px-6 sm:w-full  border-gray-400 lg:border-l-0  bg-white rounded lg:py-4 flex flex-col leading-normal">
+        <div className="lg:px-6 sm:w-full  border-gray-400 lg:border-l-0   bg-gray-100 rounded lg:py-4 flex flex-col leading-normal">
           <h4
             className="text-gray-900 font-bold text-xl pt-10 text-start"
             style={{ margin: "10px" }}>
