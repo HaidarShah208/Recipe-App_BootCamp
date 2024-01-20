@@ -55,7 +55,7 @@ const Home: React.FC = () => {
     return <Loader />;
   }
   if (error) {
-    return <div>Error: {error.message}</div>; // Assuming error is an object with a message property
+    return <div>Error: {error.message}</div>
   }
   if (fetchMeals == null) {
     return <div>Loading...</div>;

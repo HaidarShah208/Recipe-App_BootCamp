@@ -1,20 +1,20 @@
-// mealSearchSlice.ts
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import instance from '../helper/instance/Instance';
 
 export interface Category {
   strCategory: string;
-  strCategoryDescription:string;
+  strCategoryDescription: string;
   strCategoryThumb: string;
-  strMeal: string;
+  strMeal: string; // Add strMeal property to Category
   strMealThumb: string;
   strInstructions: string;
-  idMeal:number
+  idMeal: number;
 }
+
 interface Recipe {
   strMealThumb: string;
   idMeal: number;
-  strMeal: string;
+  strMeal: string; // Include strMeal in Recipe interface
   strCategoryDescription: string;
   strInstructions: string;
 }
@@ -26,25 +26,26 @@ interface MealSearchState {
 }
 
 interface MyError {
-  message: string
-  
+  message: string;
 }
-export const searchRecipes = createAsyncThunk('meals/searchRecipes', async (searchQuery: string) => {
-  try {
-    const response = await instance.get('search.php?s', {
-      params: { q: searchQuery },
-    });
 
-    const allRecipes = response.data.meals as Category[];
-    const filteredRecipes = allRecipes.filter((recipe) => {
-      return recipe.strMeal.toLowerCase().includes(searchQuery.toLowerCase());
-    });
+export const searchRecipes = createAsyncThunk(
+  'meals/searchRecipes',
+  async (searchQuery: string) => {
+    try {
+      const response = await instance.get('search.php?s', { params: { q: searchQuery } });
 
-    return filteredRecipes;
-  } catch (error) {
-    throw new Error('Error searching recipes');
+      const allRecipes = response.data.meals as Category[];
+      const filteredRecipes = allRecipes.filter((recipe) => {
+        return recipe.strMeal.toLowerCase().includes(searchQuery.toLowerCase());
+      });
+
+      return filteredRecipes as Recipe[]; // Correct return type
+    } catch (error) {
+      throw ('Error searching recipes'); // Throw specific error type
+    }
   }
-});
+);
 
 const initialState: MealSearchState = {
   searchResults: [],
@@ -62,7 +63,7 @@ export const mealSearchSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(searchRecipes.fulfilled, (state, action: PayloadAction<Category[]>) => {
+      .addCase(searchRecipes.fulfilled, (state, action: PayloadAction<Recipe[]>) => {
         state.loading = false;
         const recipes = action.payload || [];
         state.searchResults = recipes;
@@ -71,8 +72,6 @@ export const mealSearchSlice = createSlice({
         state.loading = false;
         if (action.payload) {
           state.error = action.payload as MyError;
-        } else {
-          state.error = { message: 'Unknown error occurred' };
         }
       });
   },

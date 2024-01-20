@@ -9,7 +9,6 @@ import Loader from "../../components/Loader";
 import { AiOutlineSearch } from "react-icons/ai";
 
 const AllReceitas: React.FC = () => {
-  const { recpieId } = useParams();
   const { searchQuery } = useParams();
 
   // console.log("recpieId", recpieId);
@@ -41,7 +40,6 @@ const AllReceitas: React.FC = () => {
   }
 
   const handleSearch = (searchQuery: string) => {
-    console.log("handleSearch called with query:", searchQuery);
     dispatch(searchRecipes(searchQuery));
   };
 

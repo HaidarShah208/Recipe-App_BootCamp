@@ -6,9 +6,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { searchRecipes } from "../redux/SearchSlice";
 import coffee from "../assests/Ico.png";
+import { AppDispatch } from "../redux/Store";
 
 const TopNavbar: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const [sideNav, setSideNav] = useState<boolean>(false);
   const navigate = useNavigate();
 
@@ -19,7 +20,7 @@ const TopNavbar: React.FC = () => {
   /// handle search
   const handleSearch = (searchQuery: string) => {
     navigate("/recite");
-    dispatch(searchRecipes(searchQuery) as any);
+    dispatch(searchRecipes(searchQuery));
   };
 
   return (

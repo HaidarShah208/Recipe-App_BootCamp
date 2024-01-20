@@ -10,7 +10,7 @@ import Footer from "../components/Footer";
 
 
 
-const Routese: React.FC = () => {
+export const Routese: React.FC = () => {
   return (
     <>
  <TopNavbar/>
@@ -27,4 +27,3 @@ const Routese: React.FC = () => {
   );
 };
 
-export default Routese;
