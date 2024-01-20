@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
-import { BsArrowLeft } from "react-icons/bs";
-import { FaBars } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { searchRecipes } from "../redux/SearchSlice";
-import coffee from "../assests/Ico.png";
 import { AppDispatch } from "../redux/Store";
+import coffee from "../assests/Ico.png"
+import left from "../assests/left.png"
+import toggle from "../assests/toggle.png"
+import icon from "../assests/icon.png"
+
+
 
 const TopNavbar: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -55,7 +57,7 @@ const TopNavbar: React.FC = () => {
       </div>
 
       <div className="hidden sm:flex items-center bg-gray-200 rounded-full max-w-[400px] sm:w-[400px] lg:w-[258px] md:w-[170px]">
-        <AiOutlineSearch size={20} className="ms-2" />
+        <img src={icon} className="ms-4 w-3" />
         <input
           className="bg-transparent p-2 w-full focus:outline-none"
           type="text"
@@ -66,22 +68,20 @@ const TopNavbar: React.FC = () => {
 
       <div className="lg:hidden md:hidden ml-2 transition-transform transform duration-600">
         {sideNav ? (
-          <AiOutlineClose
-            size={25}
+          <img src={toggle}
             onClick={() => {
               setSideNav(!sideNav);
             }}
-            className={`transition-transform transform-3 duration-3000 ${
+            className={`transition-transform transform-3 duration-3000 w-7 ${
               sideNav ? "translate-x-0" : "translate-x-full"
             }`}
           />
         ) : (
-          <FaBars
-            size={25}
+          <img src={toggle}
             onClick={() => {
               setSideNav(!sideNav);
             }}
-            className={`transition-transform transform-3 duration-3000 ${
+            className={`transition-transform transform-3 duration-3000 w-7 ${
               sideNav ? "translate-x-full" : "translate-x-0"
             }`}
           />
@@ -94,10 +94,10 @@ const TopNavbar: React.FC = () => {
             sideNav ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          <BsArrowLeft
+          <img
+            src={left}
             onClick={() => setSideNav(!sideNav)}
-            size={25}
-            className="absolute right-4 top-4 cursor-pointer"
+            className="absolute right-4 top-4 cursor-pointer w-7"
           />
           <h2 className="text-2xl p-4">
             Delicias a <span className="text-orange-700 font-bold"> Meta</span>

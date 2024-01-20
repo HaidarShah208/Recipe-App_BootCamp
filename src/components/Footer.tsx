@@ -1,9 +1,9 @@
 import React from 'react';
-import youtube from '../assests/Youtube Icon.png'
-import pin from '../assests/Pinterest Icon.png'
-import borw from '../assests/Browser Icon.png'
-import twi from '../assests/Twitter Icon.png'
 import coffee from '../assests/Ico.png'
+import youtube from '../assests/Youtube Icon (1).png'
+import twi from '../assests/Pinterest Icon.png'
+import borw from '../assests/Twitter Icon.png'
+import pin from '../assests/Youtube Icon.png'
 
 const Footer: React.FC = () => {
   return (
