@@ -60,33 +60,33 @@ const Receitas: React.FC = () => {
   return (
     <div>
       <div
-        className="main relative bg-cover bg-center h-[362px] w-full bg-no-repeat"
+        className="main relative bg-cover bg-center sm:w-full  bg-no-repeat h-[709px] sm:h-[362px]"
         style={{
           lineHeight: "48px",
           backgroundImage: `url(${recipieData.strMealThumb})`,
           filter: "grayscale(50%)",
         }}>
         <h4
-          className="absolute text-white inset-0 flex items-center justify-center text-center text-yellow font-bold md:text-3xl line-height-2"
+          className="absolute text-white inset-0 flex items-center justify-center text-center text-yellow font-bold text-4xl line-height-2"
           style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}>
           {recipieData.strMeal}
         </h4>
       </div>
 
-      <div className="container mx-auto mt-8 ps-10">
+      <div className="container mx-auto mt-8 ps-5">
         <div key={recipieData.idMeal}>
           <div className="ingredients">
-            <p className="flex flex-start text-2xl pb-2 font-medium">
+            <p className="flex flex-start text-2xl font-bold">
               Ingredients
             </p>
-            <ul className="my-5">
+            <ul className="my-3">
               <ul style={listStyle}>
                 {Array.from({ length: 20 }, (_, i) => i + 1).map((index) => {
                   const ingredient = recipieData[`strIngredient${index}` as keyof Recipe] as string;
                   if (ingredient) {
                     return (
                       <div key={index} className="py-1">
-                        <li className="ms-10"> {ingredient}</li>
+                        <li className="ms-7"> {ingredient}</li>
                       </div>
                     );
                   }
@@ -96,10 +96,10 @@ const Receitas: React.FC = () => {
             </ul>
           </div>
           <div className="procedure pb-8 mt-7">
-            <h3 className="flex flex-start pb-2 text-2xl font-medium">
+            <h3 className="flex flex-start pb-2 text-2xl font-bold ">
               Procedure
             </h3>
-            <p className="py-1 ms-4">{recipieData.strInstructions}</p>
+            <p className="py-1 ms-2 pe-1">{recipieData.strInstructions}</p>
           </div>
         </div>
       </div>

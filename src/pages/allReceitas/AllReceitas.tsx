@@ -46,10 +46,10 @@ const AllReceitas: React.FC = () => {
   return (
     <div className="container mx-auto flex flex-col justify-center  py-16 text-center px-8">
       <div className="grid grid-cols-1">
-      <h1 className="text-center ps-0 text-2xl mt-10 mb-8 font-bold">
+      <h1 className="text-center ps-0 text-4xl mt-10 mb-8 font-bold">
         Search Recipies
 </h1>
-        <div className="items-center mx-auto bg-slate-200 rounded-full justify-center flex lg:w-[768px] sm:w-[334px] h-[54px]">
+        <div className="items-center mx-auto bg-slate-200 rounded-full justify-center flex lg:w-[758px] sm:w-[334px] h-[64px]">
           <AiOutlineSearch size={20} className="mx-2" />
           <input
             className="bg-transparent w-full  focus:outline-none"
@@ -60,7 +60,7 @@ const AllReceitas: React.FC = () => {
         </div>
       </div>
 
-      <h1 className=" text-left justify-start ps-0 text-2xl mt-[180px] mb-8 font-bold">
+      <h1 className=" text-left justify-start ps-0 text-4xl mt-[180px] mb-8 font-bold">
         Search Results
       </h1>
 

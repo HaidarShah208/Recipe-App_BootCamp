@@ -26,17 +26,17 @@ const TopNavbar: React.FC = () => {
   };
 
   return (
-    <div className="max-w-[1286px] lg:mx-auto flex justify-between items-center p-4">
+    <div className="max-w-[1286px] lg:mx-auto flex justify-between items-center p-4 sm:h-[113px] h-[80px]">
       <div
         className="flex items-center justify-start"
         style={{ height: "31px" }}
       >
-        <div className="cursor-pointer">
+        <div className="cursor-pointer w-7 h-7 mb-2">
           <img src={coffee} alt="cofee-Icon" />
         </div>
         <h1
           className="hidden sm:block sm:text-3xl px-2"
-          style={{ width: "234px" }}
+          style={{ width: "234px" ,fontSize:'26px'}}
         >
           Delicias a Meta
         </h1>
@@ -44,13 +44,13 @@ const TopNavbar: React.FC = () => {
 
       <div className="hidden sm:flex items-center px-2 Hug-[406px] sm:w-[400px] lg:w-[500px] md:w-[170px] justify-center">
         <ul className="flex items-center justify-center">
-          <li className="lg:w-[111px] sm:w-[60px] font-medium h-[31px] ">
+          <li className="lg:w-[111px] sm:w-[60px] font-medium h-[31px] " style={{fontSize:'26px'}}>
             <Link to="/">Home</Link>
           </li>
-          <li className="lg:w-[111px] sm:w-[60px] h-[31px] font-medium">
+          <li className="lg:w-[111px] sm:w-[60px] h-[31px] font-medium" style={{fontSize:'26px'}}>
             <Link to="/recite">Recite</Link>
           </li>
-          <li className="lg:w-[111px] sm:w-[60px] font-medium h-[31px]">
+          <li className="lg:w-[111px] sm:w-[60px] font-medium h-[31px]" style={{fontSize:'26px'}}>
             <Link to="/store">Store</Link>
           </li>
         </ul>
@@ -59,7 +59,7 @@ const TopNavbar: React.FC = () => {
       <div className="hidden sm:flex items-center bg-gray-200 rounded-full max-w-[400px] sm:w-[400px] lg:w-[258px] md:w-[170px]">
         <img src={icon} className="ms-4 w-3" />
         <input
-          className="bg-transparent p-2 w-full focus:outline-none"
+          className="bg-transparent p-2 w-full focus:outline-none h-[48px]"
           type="text"
           placeholder="Search meals"
           onChange={(e) => handleSearch(e.target.value)}
@@ -81,7 +81,7 @@ const TopNavbar: React.FC = () => {
             onClick={() => {
               setSideNav(!sideNav);
             }}
-            className={`transition-transform transform-3 duration-3000 w-7 ${
+            className={`transition-transform transform-3 duration-3000 w-8 h-7 ${
               sideNav ? "translate-x-full" : "translate-x-0"
             }`}
           />

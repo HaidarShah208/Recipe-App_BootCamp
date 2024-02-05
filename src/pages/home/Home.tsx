@@ -64,7 +64,7 @@ const Home: React.FC = () => {
   return (
     <>
       <div
-        className="main relative bg-cover bg-center h-[362px]"
+        className="main relative bg-cover bg-center h-[709px] sm:h-[362px] "
         style={{
           lineHeight: "48px",
           backgroundImage:
@@ -72,7 +72,7 @@ const Home: React.FC = () => {
         }}
       >
         <h2
-          className="absolute inset-0 text-white flex items-center justify-center text-center text-yellow font-bold md:text-3xl  "
+          className="absolute inset-0 font-sans text-white flex items-center justify-center text-center text-yellow font-bold text-4xl  w-[320px] px-6  sm:w-full line-height-48"
           style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}
         >
           Get Inspired, Cook with passion and enjoy <br /> unforgettable moments
@@ -81,10 +81,10 @@ const Home: React.FC = () => {
       </div>
 
       <div className="container mx-auto flex flex-col justify-center  py-16 text-center">
-        <h1 className="col-span-12 text-2xl mb-14 font-bold">
-          Receitas mais procuradas
+        <h1 className="col-span-12 sm:text-4xl text-3xl mb-14 font-bold " >
+          Papulor Recipes
         </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 px-8 ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 px-3 ">
           {mealArray.slice(0, 3).map((item) => (
             <Cards
               key={item.idMeal}
@@ -100,8 +100,8 @@ const Home: React.FC = () => {
         className="container mx-auto flex flex-col text-center justify-center px-3 gap-1"
         style={{ maxWidth: windowWidth < 768 ? "380px" : "100%" }}
       >
-        <h1 className="col-span-12 text-2xl font-bold pb-16">
-          Receitas recentes
+        <h1 className="col-span-12 text-3xl sm:text-4xl  font-bold pb-16"  >
+        Recents Recipes
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8 sm:mx-2 rounded-s-2xl">
           {mealArray.slice(10, 13).map((item) => (

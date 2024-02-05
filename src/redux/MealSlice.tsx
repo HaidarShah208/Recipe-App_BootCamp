@@ -26,9 +26,8 @@ export const fetchMeals = createAsyncThunk('meals/fetchMeals', async () => {
   try {
     const response = await instance.get('search.php?s');
     return response.data.meals;
-  } catch (error) {
-    console.error(error);
-    throw error;
+  } catch (error:any) {
+    throw new Error(error?.message ?? "Fetch recipes error")
   }
 });
 
