@@ -72,7 +72,7 @@ const Home: React.FC = () => {
         }}
       >
         <h2
-          className="absolute inset-0 font-sans text-white flex items-center justify-center text-center text-yellow font-bold text-4xl  w-[320px] px-6  sm:w-full line-height-48"
+          className="absolute inset-0 text-white flex items-center justify-center text-center text-yellow font-bold text-4xl   px-10  sm:w-full line-height-48"
           style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}
         >
           Get Inspired, Cook with passion and enjoy <br /> unforgettable moments

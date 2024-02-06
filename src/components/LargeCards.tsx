@@ -20,7 +20,7 @@ const LargeCards: React.FC<RecipieCardProps> = ({
   };
   return (
     <>
-      <div className="bg-white-200 lg:max-w-[1187px] lg:flex justify-center lg:h-[322px] shadow my-3 md:mx-auto border-2 rounded-xl ">
+      <div className="bg-primary lg:max-w-[1187px] lg:flex justify-center lg:h-[322px] shadow my-3 md:mx-auto border-2 rounded-xl ">
         <div
           className=" lg:h-auto lg:w-[403px] h-[322px] sm:w-full md:w-[full] md:h-[250px] sm:h-[370px] bg-cover flex-none bg-center rounded-t lg:rounded-l"
           style={{ backgroundImage: `url(${image})` }}
@@ -34,7 +34,7 @@ const LargeCards: React.FC<RecipieCardProps> = ({
           <p className="text-gray-700  text-base text-start" style={{ margin: "10px" }}> {instriuctions} ....</p>
 
           <button
-            className="md:mt-3  mb-4 bg-yellow-300 px-4 py-2 rounded-md hover:bg-yellow-600 focus:outline-none focus:ring focus:border-yellow-300 ms-0 max-w-[150px]"
+            className="md:mt-3  mb-4 bg-yellow px-4 py-2 rounded-md hover:bg-darkYellow focus:outline-none focus:ring focus:border-yellow-300 ms-0 max-w-[150px]"
             onClick={handleClick}
             style={{ margin: "10px" }}>
             Read More

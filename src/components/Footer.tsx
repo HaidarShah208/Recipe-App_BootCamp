@@ -7,7 +7,7 @@ import pin from '../assests/Youtube Icon.png'
 
 const Footer: React.FC = () => {
   return (
-    <section className="py-12 bg-yellow-300 text-gray-900 mt-12 h-[273px] ">
+    <section className="py-12 bg-yellow text-gray-900 mt-12 h-[273px] ">
       <div className="container mx-auto flex flex-col justify-around p-4 text-center md:p-10 lg:flex-row">
         <div className="flex lg:flex my-auto justify-center lg:text-left">
           <p className="">

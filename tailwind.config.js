@@ -8,6 +8,13 @@ module.exports = {
             fontFamily: {
                 sans: ['Inter'],
             },
+            colors: {
+                primary: '#F5F2F2'
+            },
+            backgroundColor: {
+                yellow: '#FFDB63',
+                darkYellow: '#FFDB69'
+            }
         },
     },
     plugins: [],
