@@ -9,7 +9,8 @@ export interface Category {
   strMeal: string;
   strMealThumb: string;
   strInstructions: string;
-  idMeal:number
+  idMeal:number,
+  strMeasure:string
 }
 
 interface MyError {
@@ -25,7 +26,7 @@ interface MealFetchState {
 export const fetchMeals = createAsyncThunk('meals/fetchMeals', async () => {
   try {
     const response = await instance.get('search.php?s');
-    return response.data.meals;
+    return response.data.meals || [];
   } catch (error:any) {
     throw new Error(error?.message ?? "Fetch recipes error")
   }

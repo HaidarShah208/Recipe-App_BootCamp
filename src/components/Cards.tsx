@@ -9,7 +9,12 @@ interface RecipieCardProps{
 const Cards: React.FC<RecipieCardProps> = ({instriuctions,titile,image,recpieId}) => {
   const navigate=useNavigate()
   const handleClick = () => {
-    console.log('Navigating to:', `/recite/${recpieId}`);
+    const newRecipe = { image, titile, instriuctions, recpieId };
+  
+    const existingRecipesString = localStorage.getItem('recipes') ?? '[]';
+    const existingRecipes = JSON.parse(existingRecipesString);
+    const updatedRecipes = [...existingRecipes, newRecipe];
+    localStorage.setItem('recipes', JSON.stringify(updatedRecipes));
     navigate(`/recite/${recpieId}`);
   }
   return (

@@ -5,7 +5,7 @@ export interface Category {
   strCategory: string;
   strCategoryDescription: string;
   strCategoryThumb: string;
-  strMeal: string; // Add strMeal property to Category
+  strMeal: string;  
   strMealThumb: string;
   strInstructions: string;
   idMeal: number;
@@ -14,7 +14,7 @@ export interface Category {
 interface Recipe {
   strMealThumb: string;
   idMeal: number;
-  strMeal: string; // Include strMeal in Recipe interface
+  strMeal: string;  
   strCategoryDescription: string;
   strInstructions: string;
 }
@@ -40,9 +40,9 @@ export const searchRecipes = createAsyncThunk(
         return recipe.strMeal.toLowerCase().includes(searchQuery.toLowerCase());
       });
 
-      return filteredRecipes as Recipe[]; // Correct return type
+      return filteredRecipes as Recipe[];  
     } catch (error) {
-      throw ('Error searching recipes'); // Throw specific error type
+      throw ('Error searching recipes'); 
     }
   }
 );

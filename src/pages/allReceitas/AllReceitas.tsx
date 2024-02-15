@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../../redux/Store";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Cards from "../../components/Cards";
 import { fetchMeals } from "../../redux/MealSlice";
 import { searchRecipes } from "../../redux/SearchSlice";
@@ -10,8 +10,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 
 const AllReceitas: React.FC = () => {
   const { searchQuery } = useParams();
-
-  // console.log("recpieId", recpieId);
+  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const mealArray = useSelector((state: RootState) => state.meals.meals);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -20,7 +19,9 @@ const AllReceitas: React.FC = () => {
     (state: RootState) => state.mealFetch.searchResults
   );
   const loading = useSelector((state: RootState) => state.meals.loading);
-
+  const cleanupSearch = () => {
+    dispatch(searchRecipes(''));
+  }
   useEffect(() => {
     dispatch(fetchMeals());
     if (searchQuery) {
@@ -35,9 +36,17 @@ const AllReceitas: React.FC = () => {
     };
   }, [dispatch, searchQuery]);
 
+  useEffect(() => {
+    return () => {
+      dispatch(searchRecipes(""));
+    };
+  }, [dispatch]);
+
   if (loading) {
     return <Loader />;
   }
+
+ 
 
   const handleSearch = (searchQuery: string) => {
     dispatch(searchRecipes(searchQuery));
@@ -59,11 +68,9 @@ const AllReceitas: React.FC = () => {
           />
         </div>
       </div>
-
       <h1 className=" text-left justify-start ps-0 text-4xl mt-[180px] mb-8 font-bold">
         Search Results
       </h1>
-
    <div className="grid grid-cols-1 text-center justify-center sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
   {searchResults.length > 0 ? (
     searchResults.map((item) => (

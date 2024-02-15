@@ -20,10 +20,13 @@ const TopNavbar: React.FC = () => {
   };
 
   /// handle search
+  
   const handleSearch = (searchQuery: string) => {
-    navigate("/recite");
     dispatch(searchRecipes(searchQuery));
   };
+  const handleClick=()=>{
+    navigate("/recite");
+  }
 
   return (
     <div className="max-w-[1286px] lg:mx-auto flex justify-between items-center p-4 sm:h-[113px] h-[80px]">
@@ -48,7 +51,7 @@ const TopNavbar: React.FC = () => {
             <Link to="/">Home</Link>
           </li>
           <li className="lg:w-[111px] sm:w-[60px] h-[31px] font-medium" style={{fontSize:'26px'}}>
-            <Link to="/recite">Recite</Link>
+            <Link to="/recite">Recipe</Link>
           </li>
           <li className="lg:w-[111px] sm:w-[60px] font-medium h-[31px]" style={{fontSize:'26px'}}>
             <Link to="/store">Store</Link>
@@ -63,6 +66,7 @@ const TopNavbar: React.FC = () => {
           type="text"
           placeholder="Search meals"
           onChange={(e) => handleSearch(e.target.value)}
+          onClick={handleClick}
         />
       </div>
 
@@ -114,7 +118,7 @@ const TopNavbar: React.FC = () => {
                 className="text-xl py-2 ps-3 mb-2 flex  bg-yellow-200"
                 onClick={closeSideNav}
               >
-                <Link to="/recite">Recite</Link>
+                <Link to="/recite">Recipe</Link>
               </li>
               <li
                 className="text-xl py-2 ps-3 mb-2 flex  bg-yellow-200"

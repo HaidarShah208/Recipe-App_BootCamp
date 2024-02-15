@@ -10,6 +10,7 @@ type Recipe = {
   strMealThumb: string;
   strMeal: string;
   strInstructions: string;
+  strMeasure: string,
 };
 
 type Category = {
@@ -83,11 +84,16 @@ const Receitas: React.FC = () => {
               <ul style={listStyle}>
                 {Array.from({ length: 20 }, (_, i) => i + 1).map((index) => {
                   const ingredient = recipieData[`strIngredient${index}` as keyof Recipe] as string;
+                  const measure = recipieData[`strMeasure${index}` as keyof Recipe] as string;
                   if (ingredient) {
                     return (
                       <div key={index} className="py-1">
-                        <li className="ms-7"> {ingredient}</li>
-                      </div>
+                      <li className="ms-7">
+                        {ingredient}
+                        <span style={{ fontWeight: 'bold', marginLeft: '10px' }}> {measure} </span>
+                       
+                      </li>
+                    </div>
                     );
                   }
                   return null;

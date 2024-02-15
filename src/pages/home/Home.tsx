@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/Store";
 import Loader from "../../components/Loader";
 import Cards from "../../components/Cards";
-import { Category, fetchMeals } from "../../redux/MealSlice";
+import { Category, fetchMeals, } from "../../redux/MealSlice";
 import { searchRecipes } from "../../redux/SearchSlice";
 
 import { useParams } from "react-router-dom";
@@ -41,6 +41,8 @@ const Home: React.FC = () => {
     };
   }, [dispatch, searchQuery]);
 
+  
+
   const sliceInstructions = (instructions: string): string => {
     if (windowWidth >= 1024) {
       return instructions.slice(0, 265);
@@ -61,8 +63,13 @@ const Home: React.FC = () => {
     return <div>Loading...</div>;
   }
 
+  const existingRecipesString = localStorage.getItem("recipes") ?? "[]";
+  const existingRecipes = JSON.parse(existingRecipesString);
+
+  const lastThreeRecipes = existingRecipes.slice(-3);
+
   return (
-    <>
+    <div style={{flex:1,flexDirection:'column',minHeight:'90vh'}}>
       <div
         className="main relative bg-cover bg-center h-[709px] sm:h-[362px] "
         style={{
@@ -103,20 +110,40 @@ const Home: React.FC = () => {
         <h1 className="col-span-12 text-3xl sm:text-4xl  font-bold pb-16"  >
         Recents Recipes
         </h1>
+        {lastThreeRecipes.length >0 ?
+      (
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8 sm:mx-2 rounded-s-2xl">
-          {mealArray.slice(10, 13).map((item) => (
-            <LargeCards
-              key={item.idMeal}
-              recpieId={item.idMeal}
-              image={item.strMealThumb}
-              titile={isLargeScreen ? item.strMeal.slice(0, 27) : item.strMeal}
-              instriuctions={sliceInstructions(item.strInstructions)}
-            />
-          ))}
+           {lastThreeRecipes.map((recipiew:any,index:any) =>
+            (
+              <LargeCards
+                key={index}
+                recpieId={recipiew.recpieId}
+                image={recipiew.image}
+                titile={recipiew.titile}
+                instriuctions={recipiew.instriuctions}
+              />)
+          )}
         </div>
+      )  : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8 sm:mx-2 rounded-s-2xl">
+        {mealArray.slice(10, 13).map((item) => (
+          <LargeCards
+            key={item.idMeal}
+            recpieId={item.idMeal}
+            image={item.strMealThumb}
+            titile={isLargeScreen ? item.strMeal.slice(0, 27) : item.strMeal}
+            instriuctions={sliceInstructions(item.strInstructions)}
+          />
+        ))}
       </div>
-    </>
+      )
+      }
+      </div>
+    </div>
   );
 };
 
 export default Home;
+
+
