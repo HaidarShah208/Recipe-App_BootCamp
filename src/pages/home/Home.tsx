@@ -6,7 +6,6 @@ import Loader from "../../components/Loader";
 import Cards from "../../components/Cards";
 import { Category, fetchMeals, } from "../../redux/MealSlice";
 import { searchRecipes } from "../../redux/SearchSlice";
-
 import { useParams } from "react-router-dom";
 
 const Home: React.FC = () => {
@@ -15,7 +14,6 @@ const Home: React.FC = () => {
   const mealArray: Category[] = useSelector(
     (state: RootState) => state.meals.meals
   );
-
   const searchResults = useSelector(
     (state: RootState) => state.mealFetch.searchResults
   );
@@ -25,7 +23,6 @@ const Home: React.FC = () => {
   const [isLargeScreen, setIsLargeScreen] = useState<boolean>(
     window.innerWidth >= 768
   );
-
   useEffect(() => {
     dispatch(fetchMeals());
     if (searchQuery) {
@@ -40,9 +37,6 @@ const Home: React.FC = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [dispatch, searchQuery]);
-
-  
-
   const sliceInstructions = (instructions: string): string => {
     if (windowWidth >= 1024) {
       return instructions.slice(0, 265);
@@ -52,7 +46,6 @@ const Home: React.FC = () => {
       return instructions.slice(0, 100);
     }
   };
-
   if (loading) {
     return <Loader />;
   }
@@ -62,12 +55,9 @@ const Home: React.FC = () => {
   if (fetchMeals == null) {
     return <div>Loading...</div>;
   }
-
   const existingRecipesString = localStorage.getItem("recipes") ?? "[]";
   const existingRecipes = JSON.parse(existingRecipesString);
-
   const lastThreeRecipes = existingRecipes.slice(-3);
-
   return (
     <div style={{flex:1,flexDirection:'column',minHeight:'90vh'}}>
       <div
@@ -86,7 +76,6 @@ const Home: React.FC = () => {
           at the table
         </h2>
       </div>
-
       <div className="container mx-auto flex flex-col justify-center  py-16 text-center">
         <h1 className="col-span-12 sm:text-4xl text-3xl mb-14 font-bold " >
           Papulor Recipes
@@ -112,7 +101,6 @@ const Home: React.FC = () => {
         </h1>
         {lastThreeRecipes.length >0 ?
       (
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8 sm:mx-2 rounded-s-2xl">
            {lastThreeRecipes.map((recipiew:any,index:any) =>
             (
@@ -126,7 +114,7 @@ const Home: React.FC = () => {
           )}
         </div>
       )  : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8 sm:mx-2 rounded-s-2xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8 sm:mx-2">
         {mealArray.slice(10, 13).map((item) => (
           <LargeCards
             key={item.idMeal}
@@ -137,8 +125,7 @@ const Home: React.FC = () => {
           />
         ))}
       </div>
-      )
-      }
+      )}
       </div>
     </div>
   );

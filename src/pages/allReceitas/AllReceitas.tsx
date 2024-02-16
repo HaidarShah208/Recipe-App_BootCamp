@@ -45,13 +45,9 @@ const AllReceitas: React.FC = () => {
   if (loading) {
     return <Loader />;
   }
-
- 
-
   const handleSearch = (searchQuery: string) => {
     dispatch(searchRecipes(searchQuery));
   };
-
   return (
     <div className="container mx-auto flex flex-col justify-center  py-16 text-center px-8">
       <div className="grid grid-cols-1">

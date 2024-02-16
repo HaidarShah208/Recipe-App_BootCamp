@@ -21,22 +21,16 @@ const Receitas: React.FC = () => {
   const { recpieId } = useParams();
   const dispatch = useDispatch<AppDispatch>();
   const mealArray = useSelector((state: RootState) => state.meals.meals);
-
-  const searchResults = useSelector(
-    (state: RootState) => state.mealFetch.searchResults
-  );
+  const searchResults = useSelector((state: RootState) => state.mealFetch.searchResults);
   const loading = useSelector((state: RootState) => state.meals.loading);
   const error = useSelector((state: RootState) => state.meals.error);
   const [recipieData, setRecipieData] = useState<Recipe | null>(null);
   const listStyle: React.CSSProperties = {
     listStyleType: 'disc', 
   };
-
-
   useEffect(() => {
     dispatch(fetchMeals());
   }, [dispatch]);
-
   useEffect(() => {
     const matchRecipieId = mealArray.find(
       (recipies: Category) => recipies.idMeal.toString() === recpieId
@@ -45,19 +39,15 @@ const Receitas: React.FC = () => {
       setRecipieData(matchRecipieId as Recipe);
     }
   }, [mealArray, recpieId]);
-
   if (loading) {
     return <Loader />;
   }
-
   if (error) {
     return <div>Error: {error.message}</div>;  
   }
-
   if (recipieData === null) {
     return <div>Loading...</div>;
   }
-
   return (
     <div>
       <div

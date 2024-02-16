@@ -26,7 +26,7 @@ interface MealFetchState {
 export const fetchMeals = createAsyncThunk('meals/fetchMeals', async () => {
   try {
     const response = await instance.get('search.php?s');
-    return response.data.meals || [];
+    return response.data.meals;
   } catch (error:any) {
     throw new Error(error?.message ?? "Fetch recipes error")
   }
@@ -48,9 +48,9 @@ export const mealFetchSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchMeals.fulfilled, (state, action: PayloadAction<{ meals: Category[]}>) => {
+      .addCase(fetchMeals.fulfilled, (state, action) => {
         state.loading = false;
-        const meals = action.payload?.meals || action.payload || [];
+        const meals = action.payload;
         state.meals = Array.isArray(meals) ? meals : [meals];
       })
       .addCase(fetchMeals.rejected, (state, action) => {

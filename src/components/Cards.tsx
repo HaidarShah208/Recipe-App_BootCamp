@@ -18,9 +18,9 @@ const Cards: React.FC<RecipieCardProps> = ({instriuctions,titile,image,recpieId}
     navigate(`/recite/${recpieId}`);
   }
   return (
-    <div className="shadow-md justify-center  flex flex-col bg-primary">
-      <div className="border-none hover:scale-105 duration-300">
-        <img src={image} className="w-full h-[212px] object-cover  rounded-lg" alt="Card Image" />
+    <div className="shadow-md justify-center  flex flex-col bg-primary" style={{borderRadius:'33px 33px',}}>
+      <div className="border-none hover:scale-105 duration-300" >
+        <img src={image} className="w-full h-[212px] object-cover " alt="Card Image" style={{borderRadius:'33px 33px 0 0' ,}}/>
       </div>
      <div className='flex flex-col justify-start mt-5 '>
      <h2 className="text-3xl font-bold mb-2 flex justify-start ps-7 pt-10">{titile}</h2>

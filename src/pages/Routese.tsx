@@ -7,9 +7,6 @@ import AllReceitas from "./allReceitas/AllReceitas";
 import PageNotFound from "../components/PageNotFound";
 import TopNavbar from "../components/TopNavbar";
 import Footer from "../components/Footer";
-
-
-
 export const Routese: React.FC = () => {
   return (
     <>
