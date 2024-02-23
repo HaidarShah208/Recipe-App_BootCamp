@@ -1,4 +1,4 @@
-export interface Category {
+export type Category ={
   strCategory: string;
   strCategoryDescription:string;
   strCategoryThumb: string;
@@ -9,7 +9,7 @@ export interface Category {
   strMeasure:string
 }
 
-export interface AllCategorys {
+export type AllCategorys= {
   strCategory: string;
   strCategoryDescription: string;
   strCategoryThumb: string;
@@ -19,11 +19,11 @@ export interface AllCategorys {
   idMeal: number;
 }
 
-export interface MyError {
+export type MyError ={
   message: string
   
 }
-export interface MealFetchState {
+export type MealFetchState= {
   meals: Category[];
   loading: boolean;
   error: MyError | null;
@@ -38,7 +38,7 @@ export type Recipe = {
   strMeasure: string,
 };
 
-export interface Recipes {
+export type Recipes ={
   strMealThumb: string;
   idMeal: number;
   strMeal: string;  
@@ -51,13 +51,13 @@ export type Categorys = {
 };
 
 
-export interface MealSearchState {
+export type MealSearchState= {
   searchResults: Recipes[];
   loading: boolean;
   error: MyError | null;
 }
 
-export interface RecipieLargeCardProps {
+export type RecipieLargeCardProps ={
     image: string;
     titile: string;
     instriuctions: string;
@@ -65,15 +65,22 @@ export interface RecipieLargeCardProps {
     recpieId: number;
   }
 
- export interface MealSearchStates {
+ export type MealSearchStates ={
     searchResults: Recipes[];
     loading: boolean;
     error: MyError | null;
   }
 
- export interface RecipieCardProps{
+ export type RecipieCardProps={
     image:string,
     titile:string,
     instriuctions:string,
     recpieId: number;
+  }
+
+export type  RecipeType= {
+    recpieId: number;
+    image: string;
+    titile: string;
+    instriuctions: string;
   }

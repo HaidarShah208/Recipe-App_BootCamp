@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import instance from '../helper/instance/Instance';
+import instance from '../utilities/Instance';
 import { AllCategorys, MealSearchStates, MyError, Recipes } from '../types/types';
 
 
@@ -7,20 +7,22 @@ export const searchRecipes = createAsyncThunk(
   'meals/searchRecipes',
   async (searchQuery: string) => {
     try {
+      console.log("Making API request with search query:", searchQuery);
       const response = await instance.get('search.php?s', { params: { q: searchQuery } });
+      console.log("API Response:", response);
 
       const allRecipes = response.data.meals as AllCategorys[];
       const filteredRecipes = allRecipes.filter((recipe) => {
         return recipe.strMeal.toLowerCase().includes(searchQuery.toLowerCase());
       });
 
-      return filteredRecipes as Recipes[];  
+      console.log("Filtered Recipes:", filteredRecipes);
+      return filteredRecipes as Recipes[];
     } catch (error) {
-      throw ('Error searching recipes'); 
+      throw ('Error searching recipes');
     }
   }
 );
-
 const initialState: MealSearchStates = {
   searchResults: [],
   loading: false,

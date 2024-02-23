@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import instance from '../helper/instance/Instance';
+import instance from '../utilities/Instance';
 import { MealFetchState, MyError } from '../types/types';
 
 export const fetchMeals = createAsyncThunk('meals/fetchMeals', async () => {

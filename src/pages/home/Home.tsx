@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/Store";
 import Loader from "../../components/Loader";
 import Cards from "../../components/Cards";
-import { fetchMeals, } from "../../redux/MealSlice";
+import { fetchMeals } from "../../redux/MealSlice";
 import { searchRecipes } from "../../redux/SearchSlice";
 import { useParams } from "react-router-dom";
-import { Category } from "../../types/types";
+import { Category, RecipeType, Recipes } from "../../types/types";
+import { IMEGES } from "../../constant/AllAssests";
 
 const Home: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -51,7 +52,7 @@ const Home: React.FC = () => {
     return <Loader />;
   }
   if (error) {
-    return <div>Error: {error.message}</div>
+    return <div>Error: {error.message}</div>;
   }
   if (fetchMeals == null) {
     return <div>Loading...</div>;
@@ -60,25 +61,18 @@ const Home: React.FC = () => {
   const existingRecipes = JSON.parse(existingRecipesString);
   const lastThreeRecipes = existingRecipes.slice(-3);
   return (
-    <div style={{flex:1,flexDirection:'column',minHeight:'90vh'}}>
+    <div className="flex flex-col min-h-[90vh]">
       <div
-        className="main relative bg-cover bg-center h-[709px] sm:h-[362px] "
-        style={{
-          lineHeight: "48px",
-          backgroundImage:
-            "url('https://png.pngtree.com/background/20230512/original/pngtree-an-attractive-image-of-many-plates-of-food-picture-image_2503406.jpg')",
-        }}
+        className="main relative bg-cover bg-center h-[709px] sm:h-[362px]"
+        style={{ backgroundImage: `url(${IMEGES.MAIN})` }}
       >
-        <h2
-          className="absolute inset-0 text-white flex items-center justify-center text-center text-yellow font-bold text-4xl   px-10  sm:w-full line-height-48"
-          style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}
-        >
+        <h2 className="absolute inset-0 text-white flex items-center justify-center text-center text-yellow font-bold text-4xl px-10 sm:w-full line-height-48 bg-black bg-opacity-70">
           Get Inspired, Cook with passion and enjoy <br /> unforgettable moments
           at the table
         </h2>
       </div>
       <div className="container mx-auto flex flex-col justify-center  py-16 text-center">
-        <h1 className="col-span-12 sm:text-4xl text-3xl mb-14 font-bold " >
+        <h1 className="col-span-12 sm:text-4xl text-3xl mb-14 font-bold ">
           Papulor Recipes
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 px-3 ">
@@ -93,45 +87,40 @@ const Home: React.FC = () => {
           ))}
         </div>
       </div>
-      <div
-        className="container mx-auto flex flex-col text-center justify-center px-3 gap-1"
-        style={{ maxWidth: windowWidth < 768 ? "380px" : "100%" }}
-      >
-        <h1 className="col-span-12 text-3xl sm:text-4xl  font-bold pb-16"  >
-        Recent Recipes
+      <div className="container mx-auto  flex flex-col justify-center text-center gap-1 lg:w-3xl">
+        <h1 className="col-span-12 text-3xl sm:text-4xl  font-bold pb-16">
+          Recent Recipes
         </h1>
-        {lastThreeRecipes.length >0 ?
-      (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8 sm:mx-2 rounded-s-2xl">
-           {lastThreeRecipes.map((recipiew:any,index:any) =>
-            (
+        {lastThreeRecipes.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8 mx-2 rounded-s-2xl ">
+            {lastThreeRecipes.map((recipiew: RecipeType, index: number) => (
               <LargeCards
                 key={index}
                 recpieId={recipiew.recpieId}
                 image={recipiew.image}
                 titile={recipiew.titile}
                 instriuctions={recipiew.instriuctions}
-              />)
-          )}
-        </div>
-      )  : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8 sm:mx-2">
-        {mealArray.slice(10, 13).map((item) => (
-          <LargeCards
-            key={item.idMeal}
-            recpieId={item.idMeal}
-            image={item.strMealThumb}
-            titile={isLargeScreen ? item.strMeal.slice(0, 27) : item.strMeal}
-            instriuctions={sliceInstructions(item.strInstructions)}
-          />
-        ))}
-      </div>
-      )}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8 sm:mx-2">
+            {mealArray.slice(10, 13).map((item) => (
+              <LargeCards
+                key={item.idMeal}
+                recpieId={item.idMeal}
+                image={item.strMealThumb}
+                titile={
+                  isLargeScreen ? item.strMeal.slice(0, 27) : item.strMeal
+                }
+                instriuctions={sliceInstructions(item.strInstructions)}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
 export default Home;
-
-

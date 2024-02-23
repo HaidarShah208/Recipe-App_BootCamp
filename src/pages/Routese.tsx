@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./home/Home";
-import Store from "./sotore/Stores";
+import Store from "./store/Stores";
 import Receitas from "./detailPage/DetailPage";
-import AllReceitas from "./allRecipes/AllRecipes";
+import AllReceitas from "./searchRecipes/SearchRecipes";
 import PageNotFound from "../components/PageNotFound";
 import TopNavbar from "../components/TopNavbar";
 import Footer from "../components/Footer";

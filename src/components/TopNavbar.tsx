@@ -37,15 +37,15 @@ const TopNavbar: React.FC = () => {
       </div>
       <div className="hidden sm:flex items-center px-2 Hug-[406px] sm:w-[400px] lg:w-[500px] md:w-[170px] justify-center">
         <ul className="flex items-center justify-center">
-          <li className="lg:w-[111px] sm:w-[60px] font-medium h-[31px] " style={{fontSize:'26px'}}>
-            <Link to="/">Home</Link>
-          </li>
-          <li className="lg:w-[111px] sm:w-[60px] h-[31px] font-medium" style={{fontSize:'26px'}}>
-            <Link to="/recite">Recipe</Link>
-          </li>
-          <li className="lg:w-[111px] sm:w-[60px] font-medium h-[31px]" style={{fontSize:'26px'}}>
-            <Link to="/store">Store</Link>
-          </li>
+        <li className="lg:w-[111px] sm:w-[60px] font-medium h-[31px] text-lg sm:text-base">
+  <Link to="/">Home</Link>
+</li>
+<li className="lg:w-[111px] sm:w-[60px] h-[31px] font-medium text-lg sm:text-base">
+  <Link to="/recite">Recipe</Link>
+</li>
+<li className="lg:w-[111px] sm:w-[60px] font-medium h-[31px] text-lg sm:text-base">
+  <Link to="/store">Store</Link>
+</li>
         </ul>
       </div>
       <div className="hidden sm:flex items-center bg-gray-200 rounded-full max-w-[400px] sm:w-[400px] lg:w-[258px] md:w-[170px]">
