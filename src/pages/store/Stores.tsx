@@ -50,7 +50,7 @@ const Store: React.FC = () => {
   };
   return (
     <div
-      className="container mx-auto flex flex-col text-center justify-center px-3"
+      className="container mx-auto flex flex-col text-center justify-center px-3 "
       style={{ maxWidth: windowWidth < 768 ? "380px" : "100%" }}
     >
       <h1 className="col-span-12 text-2xl my-10 font-bold">

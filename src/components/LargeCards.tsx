@@ -27,22 +27,22 @@ const LargeCards: React.FC<RecipieLargeCardProps> = ({
         </div>
         <div className="lg:px-6 sm:w-full  border-gray-400 lg:border-l-0   bg-gray-100 rounded lg:py-4 flex flex-col leading-normal">
           <h4
-            className="text-gray-900 font-bold text-xl pt-10 text-start"
-            style={{ margin: "10px" }}
+            className="text-gray-900 font-bold text-xl pt-10 text-start my-2"
+            // style={{ margin: "10px" }}
           >
             {titile}
           </h4>
           <p
-            className="text-gray-700  text-base text-start"
-            style={{ margin: "10px" }}
+            className="text-gray-700  text-base text-start my-2"
+            // style={{ margin: "10px" }}
           >
             {" "}
             {instriuctions} ....
           </p>
           <button
-            className="md:mt-3  mb-4 bg-yellow rounded-3xl px-4 py-2 hover:bg-darkYellow focus:outline-none focus:ring focus:border-yellow-300 ms-0 max-w-[150px]"
+            className="md:mt-3  mb-4 bg-yellow rounded-3xl px-4 py-2 hover:bg-darkYellow focus:outline-none focus:ring focus:border-yellow-300 ms-0 max-w-[150px] my-2"
             onClick={handleClick}
-            style={{ margin: "10px" }}
+            // style={{ margin: "10px" }}
           >
             Read More
           </button>
