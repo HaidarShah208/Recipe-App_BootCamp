@@ -6,7 +6,8 @@ import mealFetchSlice from './SearchSlice';
 const store = configureStore({
   reducer: {
     meals:MealSlices,
-    mealFetch: mealFetchSlice,
+    mealSearch: mealFetchSlice,
+    
   },
 });
 

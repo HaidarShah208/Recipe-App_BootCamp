@@ -11,7 +11,7 @@ const Receitas: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const mealArray = useSelector((state: RootState) => state.meals.meals);
   const searchResults = useSelector(
-    (state: RootState) => state.mealFetch.searchResults
+    (state: RootState) => state.mealSearch.searchResults
   );
   const loading = useSelector((state: RootState) => state.meals.loading);
   const error = useSelector((state: RootState) => state.meals.error);

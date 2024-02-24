@@ -17,7 +17,7 @@ const Store: React.FC = () => {
     (state: RootState) => state.meals.meals
   );
   const searchResults = useSelector(
-    (state: RootState) => state.mealFetch.searchResults
+    (state: RootState) => state.mealSearch.searchResults
   );
   const loading = useSelector((state: RootState) => state.meals.loading);
 

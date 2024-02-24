@@ -6,6 +6,11 @@ export const searchRecipes = createAsyncThunk(
   'meals/searchRecipes',
   async (searchQuery: string) => {
     try {
+      if (!searchQuery) {
+        // If searchQuery is empty, return an empty array
+        return [] as Recipes[];
+      }
+
       console.log("Making API request with search query:", searchQuery);
       const response = await instance.get('search.php?s', { params: { q: searchQuery } });
       console.log("API Response:", response);
@@ -33,7 +38,12 @@ export const initialState: MealSearchStates = {
 export const mealSearchSlice = createSlice({
   name: 'mealSearch',
   initialState,
-  reducers: {},
+  reducers: {
+    clearSearchResults: (state) => {
+      // Clear search results when needed
+      state.searchResults = [];
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(searchRecipes.pending, (state) => {
@@ -43,11 +53,7 @@ export const mealSearchSlice = createSlice({
       .addCase(searchRecipes.fulfilled, (state, action: PayloadAction<Recipes[]>) => {
         const recipes = action.payload || [];
         state.loading = false;
-        if (recipes.length > 0) {
-          state.searchResults = recipes;
-        } else {
-          state.searchResults = state.defaultResults;
-        }
+        state.searchResults = recipes; // Set searchResults directly without checking length
       })
       .addCase(searchRecipes.rejected, (state, action) => {
         state.loading = false;
@@ -57,5 +63,7 @@ export const mealSearchSlice = createSlice({
       });
   },
 });
+
+export const { clearSearchResults } = mealSearchSlice.actions;
 
 export default mealSearchSlice.reducer;
