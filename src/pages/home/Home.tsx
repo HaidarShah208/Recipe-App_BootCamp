@@ -92,7 +92,7 @@ const Home: React.FC = () => {
           Recent Recipes
         </h1>
         {lastThreeRecipes.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8 mx-2 rounded-s-2xl ">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-8  px-3 rounded-s-2xl ">
             {lastThreeRecipes.map((recipiew: RecipeType, index: number) => (
               <LargeCards
                 key={index}

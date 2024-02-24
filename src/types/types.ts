@@ -55,20 +55,22 @@ export type MealSearchState= {
   searchResults: Recipes[];
   loading: boolean;
   error: MyError | null;
+  
 }
 
 export type RecipieLargeCardProps ={
-    image: string;
-    titile: string;
-    instriuctions: string;
-    ingredints?: string;
-    recpieId: number;
-  }
+  image: string;
+  titile: string;
+  instriuctions: string;
+  ingredints?: string;
+  recpieId: number;
+}
 
- export type MealSearchStates ={
-    searchResults: Recipes[];
-    loading: boolean;
-    error: MyError | null;
+export type MealSearchStates ={
+  searchResults: Recipes[];
+  loading: boolean;
+  error: MyError | null;
+  defaultResults: [], // Add this line
   }
 
  export type RecipieCardProps={

@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import instance from '../utilities/Instance';
 import { AllCategorys, MealSearchStates, MyError, Recipes } from '../types/types';
 
-
 export const searchRecipes = createAsyncThunk(
   'meals/searchRecipes',
   async (searchQuery: string) => {
@@ -23,10 +22,12 @@ export const searchRecipes = createAsyncThunk(
     }
   }
 );
-const initialState: MealSearchStates = {
+
+export const initialState: MealSearchStates = {
   searchResults: [],
   loading: false,
   error: null,
+  defaultResults: [], // Add this line
 };
 
 export const mealSearchSlice = createSlice({
@@ -40,9 +41,13 @@ export const mealSearchSlice = createSlice({
         state.error = null;
       })
       .addCase(searchRecipes.fulfilled, (state, action: PayloadAction<Recipes[]>) => {
-        state.loading = false;
         const recipes = action.payload || [];
-        state.searchResults = recipes;
+        state.loading = false;
+        if (recipes.length > 0) {
+          state.searchResults = recipes;
+        } else {
+          state.searchResults = state.defaultResults;
+        }
       })
       .addCase(searchRecipes.rejected, (state, action) => {
         state.loading = false;

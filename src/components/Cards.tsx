@@ -19,26 +19,26 @@ const Cards: React.FC<RecipieCardProps> = ({
   };
   return (
     <div
-      className="shadow-md justify-center  flex flex-col bg-primary"
-      style={{ borderRadius: "33px 33px" }}  onClick={handleClick}
+      className="shadow-md justify-center  flex flex-col bg-primary  rounded-t-3xl rounded-b-3xl"
+      onClick={handleClick}
     >
       <div className="border-none hover:scale-105 duration-300">
         <img
           src={image}
-          className="w-full h-[212px] object-cover "
+          className="sm:w-[403px] w-[380px] h-[212px] object-cover rounded-t-3xl"
           alt="Card Image"
-          style={{ borderRadius: "33px 33px 0 0" }}
         />
       </div>
-      <div className="flex flex-col justify-start mt-5 ">
+      <div className="flex flex-col justify-start h-[261px]">
         <h2 className="text-3xl font-bold mb-2 flex justify-start ps-7 pt-10">
           {titile}
         </h2>
-        <p className="text-gray-600 text-start ps-7">{instriuctions} ...</p>
+        <div className="pe-9  break-words">
+          <p className="text-gray-600 text-start  ps-7">{instriuctions} ...</p>
+        </div>
         <button
-          className="ms-7 mt-7 mb-4 bg-yellow px-4 py-2 rounded-3xl hover:bg-yellow-600 focus:outline-none focus:ring focus:border-yellow-300 w-[191px]"
+          className="ms-7 mt-7 mb-4 bg-yellow px-4 py-2 rounded-3xl hover:bg-yellow-600 text-xl focus:outline-none focus:ring focus:border-yellow-300 w-[191px]"
           onClick={handleClick}
-          style={{ fontSize: "20px" }}
         >
           Read More
         </button>

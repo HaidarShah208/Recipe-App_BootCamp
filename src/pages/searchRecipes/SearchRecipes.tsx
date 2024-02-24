@@ -6,7 +6,7 @@ import Cards from "../../components/Cards";
 import { fetchMeals } from "../../redux/MealSlice";
 import { searchRecipes } from "../../redux/SearchSlice";
 import Loader from "../../components/Loader";
-import { AiOutlineSearch } from "react-icons/ai";
+import { IMEGES } from "../../constant/AllAssests";
 
 const AllReceitas: React.FC = () => {
   const { searchQuery } = useParams();
@@ -27,6 +27,8 @@ const AllReceitas: React.FC = () => {
     if (searchQuery) {
       dispatch(searchRecipes(searchQuery));
     }
+    dispatch(searchRecipes(searchQuery || ''));
+
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
@@ -55,7 +57,7 @@ const AllReceitas: React.FC = () => {
           Search Recipies
         </h1>
         <div className="items-center mx-auto bg-slate-200 rounded-full justify-center flex lg:w-[758px] sm:w-[334px] h-[64px]">
-          <AiOutlineSearch size={20} className="mx-2" />
+          <img src={IMEGES.Search} alt="search-icon" className="px-3"/>
           <input
             className="bg-transparent w-full  focus:outline-none"
             type="text"
