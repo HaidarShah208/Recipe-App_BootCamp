@@ -1,88 +1,91 @@
-export type Category ={
+export type Category = {
   strCategory: string;
-  strCategoryDescription:string;
+  strCategoryDescription: string;
   strCategoryThumb: string;
   strMeal: string;
   strMealThumb: string;
   strInstructions: string;
-  idMeal:number,
-  strMeasure:string
-}
+  idMeal: number;
+  strMeasure: string;
+};
 
-export type AllCategorys= {
+export type AllCategorys = {
   strCategory: string;
   strCategoryDescription: string;
   strCategoryThumb: string;
-  strMeal: string;  
+  strMeal: string;
   strMealThumb: string;
   strInstructions: string;
   idMeal: number;
-}
+};
 
-export type MyError ={
-  message: string
-  
-}
-export type MealFetchState= {
+export type MyError = {
+  message: string;
+};
+export type MealFetchState = {
   meals: Category[];
   loading: boolean;
   error: MyError | null;
-}
-
+};
 
 export type Recipe = {
   idMeal: number;
   strMealThumb: string;
   strMeal: string;
   strInstructions: string;
-  strMeasure: string,
+  strMeasure: string;
 };
 
-export type Recipes ={
+export type Recipes = {
   strMealThumb: string;
   idMeal: number;
-  strMeal: string;  
+  strMeal: string;
   strCategoryDescription: string;
   strInstructions: string;
-}
+};
 
 export type Categorys = {
   idMeal: number;
 };
 
-
-export type MealSearchState= {
+export type MealSearchState = {
   searchResults: Recipes[];
   loading: boolean;
   error: MyError | null;
-  
-}
+};
 
-export type RecipieLargeCardProps ={
+export type RecipieLargeCardProps = {
   image: string;
   titile: string;
   instriuctions: string;
   ingredints?: string;
   recpieId: number;
-}
+};
 
-export type MealSearchStates ={
+export type MealSearchStates = {
   searchResults: Recipes[];
   loading: boolean;
   error: MyError | null;
-  defaultResults: [], // Add this line
-  }
+  defaultResults: []; // Add this line
+};
 
- export type RecipieCardProps={
-    image:string,
-    titile:string,
-    instriuctions:string,
-    recpieId: number;
-  }
+export type RecipieCardProps = {
+  image: string;
+  titile: string;
+  instriuctions: string;
+  recpieId: number;
+};
 
-export type  RecipeType= {
-    recpieId: number;
-    image: string;
-    titile: string;
-    instriuctions: string;
-  }
+export type RecipeType = {
+  recpieId: number;
+  image: string;
+  titile: string;
+  instriuctions: string;
+};
+
+export type Meal = {
+  idMeal:  number;
+  strMealThumb: string;
+  strMeal: string;
+  strInstructions: string;
+};

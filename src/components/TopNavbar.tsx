@@ -20,27 +20,30 @@ const TopNavbar: React.FC = () => {
   };
   return (
     <div className="max-w-[1286px] lg:mx-auto flex justify-between items-center p-4 sm:h-[113px] h-[80px]">
-      <div
-        className="flex items-center justify-start"      >
+      <div className="flex items-center justify-start">
         <div className="cursor-pointer w-7 h-7 mb-2">
           <img src={IMEGES.Coffe} alt="cofee-Icon" />
         </div>
-        <h1
-          className="hidden sm:block sm:text-2xl px-2 w-[234px] "
-        >
+        <h1 className="hidden sm:block sm:text-2xl px-2 w-[234px] ">
           Delicias a Meta
         </h1>
       </div>
       <div className="hidden sm:flex items-center px-2 Hug-[406px] sm:w-[400px] lg:w-[500px] md:w-[170px] justify-center">
         <ul className="flex items-center justify-center">
           <li className="lg:w-[111px] sm:w-[60px]  h-[31px]">
-            <Link to="/" className="text-2xl font-bold">Home</Link>
+            <Link to="/" className="text-2xl font-bold">
+              Home
+            </Link>
           </li>
           <li className="lg:w-[111px] sm:w-[60px] h-[31px] ">
-            <Link to="/recite" className="text-2xl font-bold">Recipe</Link>
+            <Link to="/recite" className="text-2xl font-bold">
+              Recipe
+            </Link>
           </li>
           <li className="lg:w-[111px] sm:w-[60px]  h-[31px] ">
-            <Link to="/store" className="text-2xl font-bold">Store</Link>
+            <Link to="/store" className="text-2xl font-bold">
+              Store
+            </Link>
           </li>
         </ul>
       </div>
@@ -57,7 +60,8 @@ const TopNavbar: React.FC = () => {
       <div className="lg:hidden md:hidden ml-2 transition-transform transform duration-600">
         {sideNav ? (
           <img
-            src={IMEGES.Toggle} alt="toggle-icon"
+            src={IMEGES.Toggle}
+            alt="toggle-icon"
             onClick={() => {
               setSideNav(!sideNav);
             }}
@@ -67,7 +71,8 @@ const TopNavbar: React.FC = () => {
           />
         ) : (
           <img
-            src={IMEGES.Toggle} alt="toggle-icon"
+            src={IMEGES.Toggle}
+            alt="toggle-icon"
             onClick={() => {
               setSideNav(!sideNav);
             }}
@@ -84,7 +89,8 @@ const TopNavbar: React.FC = () => {
           }`}
         >
           <img
-            src={IMEGES.Left} alt="left-icon"
+            src={IMEGES.Left}
+            alt="left-icon"
             onClick={() => setSideNav(!sideNav)}
             className="absolute right-4 top-4 cursor-pointer w-7"
           />

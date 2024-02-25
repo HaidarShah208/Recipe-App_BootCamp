@@ -1,13 +1,12 @@
 // Store.ts
-import { configureStore } from '@reduxjs/toolkit';
-import MealSlices from './MealSlice';
-import mealFetchSlice from './SearchSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import MealSlices from "./MealSlice";
+import mealFetchSlice from "./SearchSlice";
 
 const store = configureStore({
   reducer: {
-    meals:MealSlices,
+    meals: MealSlices,
     mealSearch: mealFetchSlice,
-    
   },
 });
 

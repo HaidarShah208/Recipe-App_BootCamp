@@ -33,13 +33,10 @@ const Cards: React.FC<RecipieCardProps> = ({
         <h2 className="text-3xl font-bold mb-2 flex justify-start ps-7 pt-10">
           {titile}
         </h2>
-        <div className="pe-9  break-words">
+        <div className="pe-7  break-words">
           <p className="text-gray-600 text-start  ps-7">{instriuctions} ...</p>
         </div>
-        <button
-          className="ms-7 mt-7 mb-4 bg-yellow px-4 py-2 rounded-3xl hover:bg-yellow-600 text-xl focus:outline-none focus:ring focus:border-yellow-300 w-[191px]"
-          onClick={handleClick}
-        >
+        <button className="ms-7 mt-7 mb-4 bg-yellow px-4 py-2 rounded-3xl hover:bg-yellow-600 text-xl focus:outline-none focus:ring focus:border-yellow-300 w-[191px]">
           Read More
         </button>
       </div>

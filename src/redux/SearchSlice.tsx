@@ -1,9 +1,14 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import instance from '../utilities/Instance';
-import { AllCategorys, MealSearchStates, MyError, Recipes } from '../types/types';
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import instance from "../utilities/Instance";
+import {
+  AllCategorys,
+  MealSearchStates,
+  MyError,
+  Recipes,
+} from "../types/types";
 
 export const searchRecipes = createAsyncThunk(
-  'meals/searchRecipes',
+  "meals/searchRecipes",
   async (searchQuery: string, { dispatch }) => {
     try {
       if (!searchQuery) {
@@ -11,7 +16,9 @@ export const searchRecipes = createAsyncThunk(
       }
 
       console.log("Making API request with search query:", searchQuery);
-      const response = await instance.get('search.php?s', { params: { q: searchQuery } });
+      const response = await instance.get("search.php?s", {
+        params: { q: searchQuery },
+      });
       console.log("API Response:", response);
 
       const allRecipes = response.data.meals as AllCategorys[];
@@ -22,7 +29,7 @@ export const searchRecipes = createAsyncThunk(
       console.log("Filtered Recipes:", filteredRecipes);
       return filteredRecipes as Recipes[];
     } catch (error) {
-      throw ('Error searching recipes');
+      throw "Error searching recipes";
     }
   }
 );
@@ -30,11 +37,11 @@ export const initialState: MealSearchStates = {
   searchResults: [],
   loading: false,
   error: null,
-  defaultResults: [], 
+  defaultResults: [],
 };
 
 export const mealSearchSlice = createSlice({
-  name: 'mealSearch',
+  name: "mealSearch",
   initialState,
   reducers: {
     clearSearchResults: (state) => {
@@ -47,11 +54,14 @@ export const mealSearchSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(searchRecipes.fulfilled, (state, action: PayloadAction<Recipes[]>) => {
-        const recipes = action.payload || [];
-        state.loading = false;
-        state.searchResults = recipes;  
-      })
+      .addCase(
+        searchRecipes.fulfilled,
+        (state, action: PayloadAction<Recipes[]>) => {
+          const recipes = action.payload || [];
+          state.loading = false;
+          state.searchResults = recipes;
+        }
+      )
       .addCase(searchRecipes.rejected, (state, action) => {
         state.loading = false;
         if (action.payload) {

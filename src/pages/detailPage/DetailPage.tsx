@@ -6,7 +6,7 @@ import Loader from "../../components/Loader";
 import { fetchMeals } from "../../redux/MealSlice";
 import { Categorys, Recipe } from "../../types/types";
 
-const Receitas: React.FC = () => {
+const DetailPage: React.FC = () => {
   const { recpieId } = useParams();
   const dispatch = useDispatch<AppDispatch>();
   const mealArray = useSelector((state: RootState) => state.meals.meals);
@@ -99,4 +99,4 @@ const Receitas: React.FC = () => {
   );
 };
 
-export default Receitas;
+export default DetailPage;

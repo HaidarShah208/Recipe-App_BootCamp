@@ -1,13 +1,13 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import instance from '../utilities/Instance';
-import { MealFetchState, MyError } from '../types/types';
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import instance from "../utilities/Instance";
+import { MealFetchState, MyError } from "../types/types";
 
-export const fetchMeals = createAsyncThunk('meals/fetchMeals', async () => {
+export const fetchMeals = createAsyncThunk("meals/fetchMeals", async () => {
   try {
-    const response = await instance.get('search.php?s');
+    const response = await instance.get("search.php?s");
     return response.data.meals;
-  } catch (error:any) {
-    throw new Error(error?.message ?? "Fetch recipes error")
+  } catch (error: any) {
+    throw new Error(error?.message ?? "Fetch recipes error");
   }
 });
 
@@ -18,7 +18,7 @@ const initialState: MealFetchState = {
 };
 
 export const mealFetchSlice = createSlice({
-  name: 'mealFetch',
+  name: "mealFetch",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -36,7 +36,7 @@ export const mealFetchSlice = createSlice({
         state.loading = false;
         if (action.payload) {
           state.error = action.payload as MyError;
-        } 
+        }
       });
   },
 });

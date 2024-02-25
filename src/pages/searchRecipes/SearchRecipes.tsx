@@ -8,18 +8,20 @@ import { searchRecipes } from "../../redux/SearchSlice";
 import Loader from "../../components/Loader";
 
 import { IMEGES } from "../../constant/AllAssests";
+import { Meal } from "../../types/types";
 
-const AllReceitas: React.FC = () => {
+const SearchRecipes: React.FC = () => {
   const { searchQuery } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const mealArray = useSelector((state: RootState) => state.meals.meals);
+  const mealArray:Meal[] = useSelector((state: RootState) => state.meals.meals);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [searchValue, setSearchValue] = useState("");
 
-  const searchResults = useSelector(
+  const searchResults:Meal[] = useSelector(
     (state: RootState) => state.mealSearch.searchResults || []
   );
-  
+
   const loading = useSelector((state: RootState) => state.meals.loading);
 
   const cleanupSearch = () => {
@@ -28,13 +30,10 @@ const AllReceitas: React.FC = () => {
 
   useEffect(() => {
     dispatch(fetchMeals());
-    if(searchQuery){
+    if (searchQuery) {
       dispatch(searchRecipes(searchQuery));
-    }
-    if (!searchQuery) {
-      dispatch(searchRecipes(''));
-    }  else {
-      cleanupSearch(); // Call cleanupSearch when searchQuery is empty
+    } else {
+      dispatch(searchRecipes(""));
     }
 
     const handleResize = () => {
@@ -50,11 +49,28 @@ const AllReceitas: React.FC = () => {
     return <Loader />;
   }
 
-  const handleSearch = (searchQuery: string) => {
-    dispatch(searchRecipes(searchQuery || ""));
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+    if (e.target.value === "") {
+      dispatch(searchRecipes(""));
+    }
   };
 
-  
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!searchValue.trim()) {
+      dispatch(searchRecipes(""));
+    } else {
+      dispatch(searchRecipes(searchValue));
+    }
+    const matchingProducts = mealArray.filter(
+      (item) => item.strMeal.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    if (matchingProducts.length > 0) {
+      // Show alert
+      alert(`${searchValue} founded in recipes ! `);
+    }
+  };
 
   return (
     <div className="container mx-auto flex flex-col justify-center  py-16 text-center px-8 min-h-[90vh]">
@@ -63,13 +79,17 @@ const AllReceitas: React.FC = () => {
           Search Recipes
         </h1>
         <div className="items-center mx-auto bg-slate-200 rounded-full justify-center flex lg:w-[758px] sm:w-[334px] h-[64px]">
-          <img src={IMEGES.Search} alt="search-icon" className="px-3"/>
-          <input
-            className="bg-transparent w-full  focus:outline-none"
-            type="text"
-            placeholder="Search meals"
-            onChange={(e) => handleSearch(e.target.value)}
-          />
+          <img src={IMEGES.Search} alt="search-icon" className="px-3" />
+          <form onSubmit={handleSubmit}>
+            <input
+              className="bg-transparent w-full  focus:outline-none"
+              type="text"
+              placeholder="Search meals"
+              value={searchValue}
+              onChange={handleSearchChange}
+            />
+            <button type="submit"></button>
+          </form>
         </div>
       </div>
       <h1 className=" text-left justify-start ps-0 text-4xl mt-[180px] mb-8 font-bold">
@@ -77,27 +97,29 @@ const AllReceitas: React.FC = () => {
       </h1>
       <div className="grid grid-cols-1 text-center justify-center sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {searchResults.length > 0
-          ? searchResults.map((item:any) => (
+          ? searchResults.map((item) => (
               <Cards
                 key={item.idMeal}
                 image={item.strMealThumb}
                 titile={item.strMeal.slice(0, 24)}
-                instriuctions={item.strInstructions.slice(0, 100)}
+                instriuctions={item.strInstructions.slice(0, 90)}
                 recpieId={item.idMeal}
               />
             ))
-          : mealArray.slice(0, 3).map((item) => (
-              <Cards
-                key={item.idMeal}
-                image={item.strMealThumb}
-                titile={item.strMeal.slice(0, 24)}
-                instriuctions={item.strInstructions.slice(0, 100)}
-                recpieId={item.idMeal}
-              />
-            ))}
+          : mealArray
+              .slice(0, 3)
+              .map((item) => (
+                <Cards
+                  key={item.idMeal}
+                  image={item.strMealThumb}
+                  titile={item.strMeal.slice(0, 24)}
+                  instriuctions={item.strInstructions.slice(0, 90)}
+                  recpieId={item.idMeal}
+                />
+              ))}
       </div>
     </div>
   );
 };
 
-export default AllReceitas;
+export default SearchRecipes;
