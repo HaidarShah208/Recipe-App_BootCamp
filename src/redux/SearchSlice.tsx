@@ -4,11 +4,14 @@ import { AllCategorys, MealSearchStates, MyError, Recipes } from '../types/types
 
 export const searchRecipes = createAsyncThunk(
   'meals/searchRecipes',
-  async (searchQuery: string) => {
+  async (searchQuery: string, { dispatch }) => {
     try {
       if (!searchQuery) {
-        // If searchQuery is empty, return an empty array
-        return [] as Recipes[];
+        // If searchQuery is empty, dispatch clearSearchResults and fetch default results
+        dispatch(clearSearchResults());
+        const response = await instance.get('search.php?s', { params: { q: 'default' } });
+        const defaultRecipes = response.data.meals as AllCategorys[];
+        return defaultRecipes as Recipes[];
       }
 
       console.log("Making API request with search query:", searchQuery);
@@ -27,7 +30,6 @@ export const searchRecipes = createAsyncThunk(
     }
   }
 );
-
 export const initialState: MealSearchStates = {
   searchResults: [],
   loading: false,

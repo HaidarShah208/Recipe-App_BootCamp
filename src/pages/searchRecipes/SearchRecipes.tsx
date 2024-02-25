@@ -17,7 +17,7 @@ const AllReceitas: React.FC = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const searchResults = useSelector(
-    (state: RootState) => state.mealSearch.searchResults
+    (state: RootState) => state.mealSearch.searchResults || []
   );
   
   const loading = useSelector((state: RootState) => state.meals.loading);
@@ -28,9 +28,14 @@ const AllReceitas: React.FC = () => {
 
   useEffect(() => {
     dispatch(fetchMeals());
-    if (searchQuery) {
+    if(searchQuery){
       dispatch(searchRecipes(searchQuery));
-    } 
+    }
+    if (!searchQuery) {
+      dispatch(searchRecipes(''));
+    }  else {
+      cleanupSearch();  
+    }
 
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -46,13 +51,13 @@ const AllReceitas: React.FC = () => {
   }
 
   const handleSearch = (searchQuery: string) => {
-    dispatch(searchRecipes(searchQuery));
+    dispatch(searchRecipes(searchQuery || ""));
   };
 
   
 
   return (
-    <div className="container mx-auto flex flex-col justify-center  py-16 text-center px-8">
+    <div className="container mx-auto flex flex-col justify-center  py-16 text-center px-8 min-h-[90vh]">
       <div className="grid grid-cols-1">
         <h1 className="text-center ps-0 text-4xl mt-10 mb-8 font-bold">
           Search Recipes
