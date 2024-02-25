@@ -7,11 +7,7 @@ export const searchRecipes = createAsyncThunk(
   async (searchQuery: string, { dispatch }) => {
     try {
       if (!searchQuery) {
-        // If searchQuery is empty, dispatch clearSearchResults and fetch default results
-        dispatch(clearSearchResults());
-        const response = await instance.get('search.php?s', { params: { q: 'default' } });
-        const defaultRecipes = response.data.meals as AllCategorys[];
-        return defaultRecipes as Recipes[];
+        return initialState.defaultResults;
       }
 
       console.log("Making API request with search query:", searchQuery);
@@ -34,7 +30,7 @@ export const initialState: MealSearchStates = {
   searchResults: [],
   loading: false,
   error: null,
-  defaultResults: [], // Add this line
+  defaultResults: [], 
 };
 
 export const mealSearchSlice = createSlice({
@@ -42,7 +38,6 @@ export const mealSearchSlice = createSlice({
   initialState,
   reducers: {
     clearSearchResults: (state) => {
-      // Clear search results when needed
       state.searchResults = [];
     },
   },
@@ -55,7 +50,7 @@ export const mealSearchSlice = createSlice({
       .addCase(searchRecipes.fulfilled, (state, action: PayloadAction<Recipes[]>) => {
         const recipes = action.payload || [];
         state.loading = false;
-        state.searchResults = recipes; // Set searchResults directly without checking length
+        state.searchResults = recipes;  
       })
       .addCase(searchRecipes.rejected, (state, action) => {
         state.loading = false;

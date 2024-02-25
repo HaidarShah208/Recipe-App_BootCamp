@@ -23,8 +23,7 @@ const Home: React.FC = () => {
   const error = useSelector((state: RootState) => state.meals.error);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isLargeScreen, setIsLargeScreen] = useState<boolean>(
-    window.innerWidth >= 768
-  );
+    window.innerWidth >= 768);
   useEffect(() => {
     dispatch(fetchMeals());
     if (searchQuery) {
@@ -82,8 +81,7 @@ const Home: React.FC = () => {
               image={item.strMealThumb}
               titile={item.strMeal.slice(0, 24)}
               instriuctions={item.strInstructions.slice(0, 100)}
-              recpieId={item.idMeal}
-            />
+              recpieId={item.idMeal}/>
           ))}
         </div>
       </div>

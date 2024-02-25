@@ -34,7 +34,7 @@ const AllReceitas: React.FC = () => {
     if (!searchQuery) {
       dispatch(searchRecipes(''));
     }  else {
-      cleanupSearch();  
+      cleanupSearch(); // Call cleanupSearch when searchQuery is empty
     }
 
     const handleResize = () => {
