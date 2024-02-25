@@ -6,7 +6,6 @@ import Cards from "../../components/Cards";
 import { fetchMeals } from "../../redux/MealSlice";
 import { searchRecipes } from "../../redux/SearchSlice";
 import Loader from "../../components/Loader";
-
 import { IMEGES } from "../../constant/AllAssests";
 import { Meal } from "../../types/types";
 
@@ -14,11 +13,13 @@ const SearchRecipes: React.FC = () => {
   const { searchQuery } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const mealArray:Meal[] = useSelector((state: RootState) => state.meals.meals);
+  const mealArray: Meal[] = useSelector(
+    (state: RootState) => state.meals.meals
+  );
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [searchValue, setSearchValue] = useState("");
 
-  const searchResults:Meal[] = useSelector(
+  const searchResults: Meal[] = useSelector(
     (state: RootState) => state.mealSearch.searchResults || []
   );
 
@@ -63,11 +64,10 @@ const SearchRecipes: React.FC = () => {
     } else {
       dispatch(searchRecipes(searchValue));
     }
-    const matchingProducts = mealArray.filter(
-      (item) => item.strMeal.toLowerCase().includes(searchValue.toLowerCase())
+    const matchingProducts = mealArray.filter((item) =>
+      item.strMeal.toLowerCase().includes(searchValue.toLowerCase())
     );
     if (matchingProducts.length > 0) {
-      // Show alert
       alert(`${searchValue} founded in recipes ! `);
     }
   };
@@ -78,7 +78,7 @@ const SearchRecipes: React.FC = () => {
         <h1 className="text-center ps-0 text-4xl mt-10 mb-8 font-bold">
           Search Recipes
         </h1>
-        <div className="items-center mx-auto bg-slate-200 rounded-full justify-center flex lg:w-[758px] sm:w-[334px] h-[64px]">
+        <div className="items-center mx-auto bg-slate-200 rounded-full  flex lg:w-[758px] sm:w-[334px] h-[64px]">
           <img src={IMEGES.Search} alt="search-icon" className="px-3" />
           <form onSubmit={handleSubmit}>
             <input

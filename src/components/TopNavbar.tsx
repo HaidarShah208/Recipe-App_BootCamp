@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { searchRecipes } from "../redux/SearchSlice";
-import { AppDispatch } from "../redux/Store";
+import { AppDispatch, RootState } from "../redux/Store";
 import { IMEGES } from "../constant/AllAssests";
+import { Meal } from "../types/types";
 
 const TopNavbar: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [sideNav, setSideNav] = useState<boolean>(false);
+  const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
   const closeSideNav = () => {
     setSideNav(false);
@@ -18,6 +20,31 @@ const TopNavbar: React.FC = () => {
   const handleClick = () => {
     navigate("/recite");
   };
+  const mealArray: Meal[] = useSelector(
+    (state: RootState) => state.meals.meals
+  );
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+    if (e.target.value === "") {
+      dispatch(searchRecipes(""));
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!searchValue.trim()) {
+      dispatch(searchRecipes(""));
+    } else {
+      dispatch(searchRecipes(searchValue));
+    }
+    const matchingProducts = mealArray.filter((item) =>
+      item.strMeal.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    if (matchingProducts.length > 0) {
+      alert(`${searchValue} founded in recipes ! `);
+    }
+  };
+
   return (
     <div className="max-w-[1286px] lg:mx-auto flex justify-between items-center p-4 sm:h-[113px] h-[80px]">
       <div className="flex items-center justify-start">
@@ -31,17 +58,17 @@ const TopNavbar: React.FC = () => {
       <div className="hidden sm:flex items-center px-2 Hug-[406px] sm:w-[400px] lg:w-[500px] md:w-[170px] justify-center">
         <ul className="flex items-center justify-center">
           <li className="lg:w-[111px] sm:w-[60px]  h-[31px]">
-            <Link to="/" className="text-2xl font-bold">
+            <Link to="/" className="lg:text-2xl font-bold">
               Home
             </Link>
           </li>
           <li className="lg:w-[111px] sm:w-[60px] h-[31px] ">
-            <Link to="/recite" className="text-2xl font-bold">
+            <Link to="/recite" className="lg:text-2xl font-bold">
               Recipe
             </Link>
           </li>
           <li className="lg:w-[111px] sm:w-[60px]  h-[31px] ">
-            <Link to="/store" className="text-2xl font-bold">
+            <Link to="/store" className="lg:text-2xl font-bold">
               Store
             </Link>
           </li>
@@ -49,13 +76,17 @@ const TopNavbar: React.FC = () => {
       </div>
       <div className="hidden sm:flex items-center bg-gray-200 rounded-full max-w-[400px] sm:w-[400px] lg:w-[258px] md:w-[170px]">
         <img src={IMEGES.Search} className="ms-4 w-3" />
-        <input
-          className="bg-transparent p-2 w-full focus:outline-none h-[48px]"
-          type="text"
-          placeholder="Search meals"
-          onChange={(e) => handleSearch(e.target.value)}
-          onClick={handleClick}
-        />
+        <form onSubmit={handleSubmit}>
+          <input
+            className="bg-transparent p-2 w-full focus:outline-none h-[48px]"
+            type="text"
+            placeholder="Search meals"
+            value={searchValue}
+            onChange={handleSearchChange}
+            onClick={handleClick}
+          />
+          <button type="submit"></button>
+        </form>
       </div>
       <div className="lg:hidden md:hidden ml-2 transition-transform transform duration-600">
         {sideNav ? (
