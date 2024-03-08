@@ -66,8 +66,8 @@ const SearchRecipes: React.FC = () => {
     const matchingProducts = mealArray.filter((item) =>
       item.strMeal.toLowerCase().includes(searchValue.toLowerCase())
     );
-    if (matchingProducts.length > 0) {
-      alert(`${searchValue} founded in recipes ! `);
+    if (matchingProducts.length === 0 && searchResults.length === 0) {
+      alert(`${searchValue} not found in recipes!`);
     }
   };
 

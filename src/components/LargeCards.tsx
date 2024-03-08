@@ -10,7 +10,7 @@ const LargeCards: React.FC<RecipieLargeCardProps> = ({
 }) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(`/recite/${recpieId}`);
+    navigate(`/recipe/${recpieId}`);
   };
   return (
     <>

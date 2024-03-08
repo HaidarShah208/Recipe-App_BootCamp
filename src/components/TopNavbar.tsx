@@ -14,14 +14,14 @@ const TopNavbar: React.FC = () => {
   const closeSideNav = () => {
     setSideNav(false);
   };
-  const handleSearch = (searchQuery: string) => {
-    dispatch(searchRecipes(searchQuery));
-  };
-  const handleClick = () => {
-    navigate("/recite");
-  };
   const mealArray: Meal[] = useSelector(
     (state: RootState) => state.meals.meals
+  );
+  const handleClick = () => {
+    navigate("/recipe");
+  };
+  const searchResults: Meal[] = useSelector(
+    (state: RootState) => state.mealSearch.searchResults || []
   );
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
@@ -40,8 +40,8 @@ const TopNavbar: React.FC = () => {
     const matchingProducts = mealArray.filter((item) =>
       item.strMeal.toLowerCase().includes(searchValue.toLowerCase())
     );
-    if (matchingProducts.length > 0) {
-      alert(`${searchValue} founded in recipes ! `);
+    if (matchingProducts.length === 0 && searchResults.length === 0) {
+      alert(`${searchValue} not found in recipes!`);
     }
   };
 
@@ -63,7 +63,7 @@ const TopNavbar: React.FC = () => {
             </Link>
           </li>
           <li className="lg:w-[111px] sm:w-[60px] h-[31px] ">
-            <Link to="/recite" className="lg:text-2xl font-bold">
+            <Link to="/recipe" className="lg:text-2xl font-bold">
               Recipe
             </Link>
           </li>
@@ -140,7 +140,7 @@ const TopNavbar: React.FC = () => {
                 className="text-xl py-2 ps-3 mb-2 flex  bg-yellow-200"
                 onClick={closeSideNav}
               >
-                <Link to="/recite">Recipe</Link>
+                <Link to="/recipe">Recipe</Link>
               </li>
               <li
                 className="text-xl py-2 ps-3 mb-2 flex  bg-yellow-200"

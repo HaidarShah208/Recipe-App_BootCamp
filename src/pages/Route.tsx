@@ -14,8 +14,8 @@ export const Routese: React.FC = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/store" element={<Store />} />
-      <Route path="/recite/:recpieId" element={<Receitas />} />
-      <Route path="/recite" element={<AllReceitas />} />
+      <Route path="/recipe/:recpieId" element={<Receitas />} />
+      <Route path="/recipe" element={<AllReceitas />} />
       <Route path="*" element={<PageNotFound/>} />
     </Routes>
     <Footer/>

@@ -15,7 +15,7 @@ const Cards: React.FC<RecipieCardProps> = ({
     const existingRecipes = JSON.parse(existingRecipesString);
     const updatedRecipes = [...existingRecipes, newRecipe];
     localStorage.setItem("recipes", JSON.stringify(updatedRecipes));
-    navigate(`/recite/${recpieId}`);
+    navigate(`/recipe/${recpieId}`);
   };
   return (
     <div
