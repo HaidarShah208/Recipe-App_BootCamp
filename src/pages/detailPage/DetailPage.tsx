@@ -74,7 +74,7 @@ const DetailPage: React.FC = () => {
                   if (ingredient) {
                     return (
                       <div key={index} className="py-1">
-                        <li className="ms-7">
+                        <li className="ms-7 text-[24px]">
                           {ingredient}
                           <span className="font-bold ms-3">{measure}</span>
                         </li>
@@ -91,7 +91,7 @@ const DetailPage: React.FC = () => {
             <h3 className="flex flex-start pb-2 text-2xl font-bold">
               Procedure
             </h3>
-            <p className="py-1 ms-2 pe-1">{recipieData.strInstructions}</p>
+            <p className="py-1 ms-2 pe-1 text-[24px]">{recipieData.strInstructions}</p>
           </div>
         </div>
       </div>
