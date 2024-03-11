@@ -65,7 +65,7 @@ const Home: React.FC = () => {
         className="main relative bg-cover bg-center h-[709px] sm:h-[362px]"
         style={{ backgroundImage: `url(${IMEGES.MAIN})` }}
       >
-        <h2 className="absolute inset-0 text-white flex items-center justify-center text-center text-yellow font-bold text-4xl px-10 sm:w-full line-height-48 bg-black bg-opacity-50">
+        <h2 className="absolute inset-0 text-white flex items-center justify-center text-center text-yellow font-bold text-[40px] px-10 sm:w-full line-height-48 bg-black bg-opacity-50">
           Get Inspired, Cook with passion and enjoy <br /> unforgettable moments
           at the table
         </h2>
