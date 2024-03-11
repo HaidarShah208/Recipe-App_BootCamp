@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
       <div className="container mx-auto flex flex-col justify-around p-4 text-center md:p-10 lg:flex-row">
         <div className="flex lg:flex my-auto justify-center lg:text-left">
           <p className="">
-            <img src={IMEGES.Coffe} className="mt-1" alt="cofee-Icon" />
+            <img src={IMEGES.Coffe}  alt="cofee-Icon" />
           </p>
           <h1 className="my-1 sm:block hidden ps-3 text-[46px] font-medium leading-tight title-font">
             Delicias a Meta
