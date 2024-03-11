@@ -51,8 +51,7 @@ const DetailPage: React.FC = () => {
           backgroundImage: `url(${recipieData.strMealThumb})`,
         }}
       >
-        <h4
-          className="absolute text-white inset-0 flex items-center justify-center text-center text-yellow font-bold text-4xl line-height-2  bg-black bg-opacity-70"        >
+        <h4 className="absolute text-white inset-0 flex items-center justify-center text-center text-yellow font-bold text-4xl line-height-2  bg-black bg-opacity-70">
           {recipieData.strMeal}
         </h4>
       </div>
@@ -74,7 +73,7 @@ const DetailPage: React.FC = () => {
                   if (ingredient) {
                     return (
                       <div key={index} className="py-1">
-                        <li className="ms-7">
+                        <li className="ms-7 text-[24px]">
                           {ingredient}
                           <span className="font-bold ms-3">{measure}</span>
                         </li>
@@ -91,7 +90,9 @@ const DetailPage: React.FC = () => {
             <h3 className="flex flex-start pb-2 text-2xl font-bold">
               Procedure
             </h3>
-            <p className="py-1 ms-2 pe-1">{recipieData.strInstructions}</p>
+            <p className="py-1 ms-2 pe-1 text-[24px]">
+              {recipieData.strInstructions}
+            </p>
           </div>
         </div>
       </div>

@@ -97,7 +97,7 @@ const SearchRecipes: React.FC = () => {
                 key={item.idMeal}
                 image={item.strMealThumb}
                 titile={item.strMeal.slice(0, 24)}
-                instriuctions={item.strInstructions.slice(0, 90)}
+                instriuctions={item.strInstructions.slice(0, 70)}
                 recpieId={item.idMeal}
               />
             ))
@@ -108,7 +108,7 @@ const SearchRecipes: React.FC = () => {
                   key={item.idMeal}
                   image={item.strMealThumb}
                   titile={item.strMeal.slice(0, 24)}
-                  instriuctions={item.strInstructions.slice(0, 90)}
+                  instriuctions={item.strInstructions.slice(0, 70)}
                   recpieId={item.idMeal}
                 />
               ))}

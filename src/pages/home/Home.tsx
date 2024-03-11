@@ -47,6 +47,8 @@ const Home: React.FC = () => {
       return instructions.slice(0, 100);
     }
   };
+
+  
   if (loading) {
     return <Loader />;
   }
@@ -65,7 +67,7 @@ const Home: React.FC = () => {
         className="main relative bg-cover bg-center h-[709px] sm:h-[362px]"
         style={{ backgroundImage: `url(${IMEGES.MAIN})` }}
       >
-        <h2 className="absolute inset-0 text-white flex items-center justify-center text-center text-yellow font-bold text-4xl px-10 sm:w-full line-height-48 bg-black bg-opacity-50">
+        <h2 className="absolute inset-0 text-white flex items-center justify-center text-center text-yellow font-bold text-[40px] px-10 sm:w-full line-height-48 bg-black bg-opacity-50">
           Get Inspired, Cook with passion and enjoy <br /> unforgettable moments
           at the table
         </h2>
@@ -80,12 +82,12 @@ const Home: React.FC = () => {
               key={item.idMeal}
               image={item.strMealThumb}
               titile={item.strMeal.slice(0, 24)}
-              instriuctions={item.strInstructions.slice(0, 100)}
+              instriuctions={item.strInstructions.slice(0, 75)}
               recpieId={item.idMeal}/>
           ))}
         </div>
       </div>
-      <div className="container mx-auto  flex flex-col justify-center text-center gap-1 lg:w-3xl">
+      <div className="container mx-auto  flex flex-col items-center justify-center text-center gap-1 lg:w-3xl">
         <h1 className="col-span-12 text-3xl sm:text-4xl  font-bold pb-16">
           Recent Recipes
         </h1>
