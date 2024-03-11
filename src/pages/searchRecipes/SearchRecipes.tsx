@@ -68,9 +68,9 @@ const SearchRecipes: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto flex flex-col justify-center  py-16 text-center px-8 min-h-[90vh]">
+    <div className="container mx-auto flex flex-col justify-center  py-16 text-center px-4 min-h-[90vh]">
       <div className="grid grid-cols-1">
-        <h1 className="text-center ps-0 text-4xl mt-10 mb-8 font-bold">
+        <h1 className="text-center ps-0 text-[32px] sm:text-[38px] mt-10 mb-8 font-bold">
           Search Recipes
         </h1>
         <div className="items-center mx-auto bg-slate-200 rounded-full  flex lg:w-[758px] sm:w-[334px] h-[64px]">
@@ -87,7 +87,7 @@ const SearchRecipes: React.FC = () => {
           </form>
         </div>
       </div>
-      <h1 className=" text-left justify-start ps-0 text-4xl mt-[180px] mb-8 font-bold">
+      <h1 className=" text-left justify-start ps-0 text-[32px] sm:text-[38px] mt-[180px] mb-8 font-bold">
         Search Results
       </h1>
       <div className="grid grid-cols-1 text-center justify-center sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -97,7 +97,7 @@ const SearchRecipes: React.FC = () => {
                 key={item.idMeal}
                 image={item.strMealThumb}
                 titile={item.strMeal.slice(0, 24)}
-                instriuctions={item.strInstructions.slice(0, 70)}
+                instriuctions={item.strInstructions.slice(0, 75)}
                 recpieId={item.idMeal}
               />
             ))
@@ -108,7 +108,7 @@ const SearchRecipes: React.FC = () => {
                   key={item.idMeal}
                   image={item.strMealThumb}
                   titile={item.strMeal.slice(0, 24)}
-                  instriuctions={item.strInstructions.slice(0, 70)}
+                  instriuctions={item.strInstructions.slice(0, 75)}
                   recpieId={item.idMeal}
                 />
               ))}
