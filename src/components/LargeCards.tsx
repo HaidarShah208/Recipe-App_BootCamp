@@ -25,18 +25,31 @@ const LargeCards: React.FC<RecipieLargeCardProps> = ({
             className="w-[380px]  h-full object-cover"
           />
         </div>
+<<<<<<< HEAD
         <div className="lg:px-6 w-[380px] lg:w-auto lg:h-auto  h-[261px] border-gray-400 lg:border-l-0   bg-gray-100 rounded lg:py-4 flex flex-col leading-normal">
           <h4 className="text-gray-900 font-bold sm:text-[40px] text-[32px] pt-7 text-start sm:px-0 ps-3 my-2">
             {titile}
           </h4>
           <div className="pe-9 break-words">
             <p className="text-gray-700 text-[20px] text-base text-start my-2 ps-3 sm:pe-3 sm:px-0 pe-12">
+=======
+        <div className="lg:px-6 w-[380px] lg:w-auto lg:h-auto h-[261px] border-gray-400 lg:border-l-0   bg-gray-100 rounded lg:py-4 flex flex-col leading-normal">
+          <h4 className="text-gray-900 font-bold sm:text-[40px] text-[32px] pt-10 text-start ps-3 my-2">
+            {titile}
+          </h4>
+          <div className="pe-9 break-words">
+            <p className="text-gray-700 text-[20.71px]  text-base text-start my-2 ps-3 sm:pe-3 pe-12">
+>>>>>>> 916c8aa4f124695854710495d0e1c0f887eb3e8b
               {" "}
               {instriuctions} ....
             </p>
           </div>
           <button
+<<<<<<< HEAD
             className="md:mt-3 text-[20px] ms-3 mb-4 bg-yellow rounded-3xl px-5 py-2 sm:mx-0 hover:bg-darkYellow focus:outline-none focus:ring focus:border-yellow-300  max-w-[150px] my-2"
+=======
+            className="md:mt-3 ms-3 text-[20.71px] mb-4 bg-yellow rounded-3xl px-5 py-2 hover:bg-darkYellow focus:outline-none focus:ring focus:border-yellow-300  max-w-[150px] my-2"
+>>>>>>> 916c8aa4f124695854710495d0e1c0f887eb3e8b
             onClick={handleClick}
           >
             Read More

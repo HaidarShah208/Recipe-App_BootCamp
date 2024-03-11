@@ -90,9 +90,13 @@ const DetailPage: React.FC = () => {
             <h3 className="flex flex-start pb-2 text-2xl font-bold">
               Procedure
             </h3>
+<<<<<<< HEAD
             <p className="py-1 ms-2 pe-1 text-[24px]">
               {recipieData.strInstructions}
             </p>
+=======
+            <p className="py-1 ms-2 pe-1 text-[24px]">{recipieData.strInstructions}</p>
+>>>>>>> 916c8aa4f124695854710495d0e1c0f887eb3e8b
           </div>
         </div>
       </div>
