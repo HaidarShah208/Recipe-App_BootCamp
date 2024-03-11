@@ -71,7 +71,7 @@ const Home: React.FC = () => {
         </h2>
       </div>
       <div className="container mx-auto flex flex-col justify-center  py-16 text-center">
-        <h1 className="col-span-12 sm:text-4xl text-3xl mb-14 font-bold ">
+        <h1 className="col-span-12 sm:text-[38px] text-[32px] mb-14 font-bold ">
           Papulor Recipes
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 px-3 ">
@@ -80,13 +80,13 @@ const Home: React.FC = () => {
               key={item.idMeal}
               image={item.strMealThumb}
               titile={item.strMeal.slice(0, 24)}
-              instriuctions={item.strInstructions.slice(0, 100)}
+              instriuctions={item.strInstructions.slice(0, 40)}
               recpieId={item.idMeal}/>
           ))}
         </div>
       </div>
-      <div className="container mx-auto  flex flex-col justify-center text-center gap-1 lg:w-3xl">
-        <h1 className="col-span-12 text-3xl sm:text-4xl  font-bold pb-16">
+      <div className="container mx-auto  flex flex-col items-center justify-center text-center gap-1 lg:w-3xl">
+        <h1 className="col-span-12 text-[32px] sm:text-[38px]  font-bold pb-16">
           Recent Recipes
         </h1>
         {lastThreeRecipes.length > 0 ? (
