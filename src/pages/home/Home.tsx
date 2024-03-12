@@ -82,21 +82,13 @@ const Home: React.FC = () => {
               key={item.idMeal}
               image={item.strMealThumb}
               titile={item.strMeal.slice(0, 24)}
-<<<<<<< HEAD
               instriuctions={item.strInstructions.slice(0, 75)}
-=======
-              instriuctions={item.strInstructions.slice(0, 40)}
->>>>>>> 916c8aa4f124695854710495d0e1c0f887eb3e8b
               recpieId={item.idMeal}/>
           ))}
         </div>
       </div>
       <div className="container mx-auto  flex flex-col items-center justify-center text-center gap-1 lg:w-3xl">
-<<<<<<< HEAD
         <h1 className="col-span-12 text-3xl sm:text-4xl  font-bold pb-16">
-=======
-        <h1 className="col-span-12 text-[32px] sm:text-[38px]  font-bold pb-16">
->>>>>>> 916c8aa4f124695854710495d0e1c0f887eb3e8b
           Recent Recipes
         </h1>
         {lastThreeRecipes.length > 0 ? (

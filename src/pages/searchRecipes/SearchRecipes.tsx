@@ -97,11 +97,7 @@ const SearchRecipes: React.FC = () => {
                 key={item.idMeal}
                 image={item.strMealThumb}
                 titile={item.strMeal.slice(0, 24)}
-<<<<<<< HEAD
                 instriuctions={item.strInstructions.slice(0, 75)}
-=======
-                instriuctions={item.strInstructions.slice(0, 40)}
->>>>>>> 916c8aa4f124695854710495d0e1c0f887eb3e8b
                 recpieId={item.idMeal}
               />
             ))
@@ -112,11 +108,7 @@ const SearchRecipes: React.FC = () => {
                   key={item.idMeal}
                   image={item.strMealThumb}
                   titile={item.strMeal.slice(0, 24)}
-<<<<<<< HEAD
                   instriuctions={item.strInstructions.slice(0, 75)}
-=======
-                  instriuctions={item.strInstructions.slice(0, 40)}
->>>>>>> 916c8aa4f124695854710495d0e1c0f887eb3e8b
                   recpieId={item.idMeal}
                 />
               ))}
